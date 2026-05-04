@@ -2,5 +2,7 @@
   "JHIN-BULLET.title": "Bullets",
   "JHIN-BULLET.description": "Jhin's firing resource. Most shoot cards spend 1 Bullet; when Bullets reach 0, the magazine must be reloaded.",
   "JHIN-FLOURISH.title": "Flourish",
-  "JHIN-FLOURISH.description": "Triggers when a shoot card truly spends the last Bullet. Flourish resolves that card's flourish effect and triggers related relic, skill, and Power effects."
+  "JHIN-FLOURISH.description": "Triggers when a shoot card truly spends the last Bullet. Flourish resolves that card's flourish effect and triggers related relic, skill, and Power effects.",
+  "JHIN-MARK.title": "Mark",
+  "JHIN-MARK.description": "When Jhin's next [gold]Shoot[/gold] card hits a marked enemy, it deals {markDamagePerStack} additional damage per stack and removes all Mark. Non-shoot damage does not consume it."
 }

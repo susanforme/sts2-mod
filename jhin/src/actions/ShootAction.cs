@@ -1,7 +1,9 @@
 #nullable enable
 
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using jhin.Magazine;
+using jhin.Powers;
 
 namespace jhin.Actions;
 
@@ -17,6 +19,22 @@ public enum ShootResult
 
 public static class ShootAction
 {
+    public static int GetMarkAmount(Creature? target)
+    {
+        return target?.GetPower<MarkPower>()?.Amount ?? 0;
+    }
+
+    public static void ConsumeMarks(Creature? target)
+    {
+        MarkPower? markPower = target?.GetPower<MarkPower>();
+        if (markPower is null)
+        {
+            return;
+        }
+
+        target!.RemovePowerInternal(markPower);
+    }
+
     /// <summary>
     /// Attempts to consume one bullet. Returns the result indicating whether
     /// the shot was normal, triggered a flourish, or failed.

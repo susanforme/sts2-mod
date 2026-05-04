@@ -13,6 +13,7 @@ using jhin.Actions;
 using jhin.Cards;
 using jhin.Extensions;
 using jhin.Magazine;
+using jhin.Utils;
 using System.Threading.Tasks;
 
 namespace jhin.Relics;
@@ -62,12 +63,9 @@ public class Whisper : CustomRelicModel
     public override decimal ModifyDamageMultiplicative(
         Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (!IsWouldFlourish(dealer, cardSource))
-        {
-            return 1m;
-        }
-
-        return 1.5m;
+        return DamageCalculationUtil.GetWhisperFlourishMultiplier(
+            hasWhisper: true,
+            isFlourish: IsWouldFlourish(dealer, cardSource));
     }
 
     /// <summary>
@@ -90,8 +88,10 @@ public class Whisper : CustomRelicModel
             return 0m;
         }
 
-        decimal hpRatio = (decimal)target.CurrentHp / (decimal)target.MaxHp;
-        return hpRatio < 0.25m ? 6m : 0m;
+        return DamageCalculationUtil.GetWhisperLowHpBonusDamage(
+            hasWhisper: true,
+            isFlourish: true,
+            isLowHp: DamageCalculationUtil.IsLowHp(target.CurrentHp, target.MaxHp));
     }
 
     private bool IsWouldFlourish(Creature? dealer, CardModel? cardSource)

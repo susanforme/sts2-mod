@@ -1,9 +1,14 @@
 #nullable enable
 
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using jhin.Actions;
 using jhin.Magazine;
+using jhin.Relics;
+using jhin.Utils;
 
 namespace jhin.Cards;
 
@@ -72,5 +77,33 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
     /// </summary>
     protected virtual void OnFlourish()
     {
+    }
+
+    protected async Task<AttackCommand> PerformShootAttack(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        int extraCardDamagePerMark = 0)
+    {
+        int markAmount = ShootAction.GetMarkAmount(target);
+        bool isLowHp = DamageCalculationUtil.IsLowHp(target.CurrentHp, target.MaxHp);
+        ShootDamageCalculationResult damageResult = DamageCalculationUtil.CalculateShootDamage(
+            baseDamage: DynamicVars.Damage.IntValue,
+            isFlourish: IsFlourishShot,
+            markStacks: markAmount,
+            isLowHp: isLowHp,
+            // Whisper remains in the relic hook so combat damage and previews stay in sync.
+            hasWhisper: false,
+            extraDamagePerMark: extraCardDamagePerMark);
+
+        AttackCommand command = await CommonActions
+            .CardAttack(this, target, damageResult.TotalDamage, 1, null, null, null)
+            .Execute(choiceContext);
+
+        if (markAmount > 0)
+        {
+            ShootAction.ConsumeMarks(target);
+        }
+
+        return command;
     }
 }

@@ -10,4 +10,7 @@ public static class JhinKeywords
 
     [CustomEnum("flourish")]
     public static CardKeyword Flourish;
+
+    [CustomEnum("mark")]
+    public static CardKeyword Mark;
 }

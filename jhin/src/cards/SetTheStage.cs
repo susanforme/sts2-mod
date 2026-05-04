@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
+using jhin.Actions;
 using jhin.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,33 +15,27 @@ using System.Threading.Tasks;
 namespace jhin.Cards;
 
 [Pool(typeof(JhinCardPool))]
-public class CommonShot() : AbstractShootCard(
+public class SetTheStage() : AbstractJhinCard(
     cost: 1,
+    type: CardType.Skill,
     rarity: CardRarity.Common,
-    target: TargetType.AnyEnemy)
+    target: TargetType.Self)
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
+        HoverTipFactory.FromKeyword(JhinKeywords.Mark),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
-        {
-            return;
-        }
-
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-        EndFlourishContext();
+        await CommonActions.CardBlock(this, cardPlay);
+        ApplyMarkAction.ExecuteRandomEnemy(Owner, 1);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

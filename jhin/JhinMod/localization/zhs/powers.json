@@ -1,4 +1,6 @@
 {
   "JHIN-BULLET_POWER.title": "子弹",
-  "JHIN-BULLET_POWER.description": "显示当前[gold]子弹[/gold]数。"
+  "JHIN-BULLET_POWER.description": "显示当前[gold]子弹[/gold]数。",
+  "JHIN-MARK_POWER.title": "标记",
+  "JHIN-MARK_POWER.description": "当烬下一张[gold]射击[/gold]牌命中该敌人时，每层额外造成 {markDamagePerStack} 点伤害，然后移除所有[gold]标记[/gold]。"
 }

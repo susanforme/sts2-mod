@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
+using jhin.Actions;
 using jhin.CardPools;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,18 +15,17 @@ using System.Threading.Tasks;
 namespace jhin.Cards;
 
 [Pool(typeof(JhinCardPool))]
-public class CommonShot() : AbstractShootCard(
+public class AimShot() : AbstractShootCard(
     cost: 1,
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy)
 {
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
+        HoverTipFactory.FromKeyword(JhinKeywords.Mark),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -36,6 +36,7 @@ public class CommonShot() : AbstractShootCard(
         }
 
         await PerformShootAttack(choiceContext, cardPlay.Target);
+        ApplyMarkAction.Execute(cardPlay.Target, 1);
         EndFlourishContext();
     }
 
