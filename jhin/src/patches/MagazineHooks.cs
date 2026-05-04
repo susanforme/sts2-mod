@@ -224,7 +224,6 @@ public static class JhinCannotPlayFtuePatch
         {
             if (!JhinMagazineStateRegistry.IsJhin(card.Owner))
             {
-                MainFile.Logger.Info($"FTUE check ignored for non-Jhin card {card.Id}");
                 _currentFtueCard = null;
                 return;
             }
@@ -232,16 +231,12 @@ public static class JhinCannotPlayFtuePatch
             UnplayableReason reason;
             AbstractModel? preventer;
             bool canPlay = card.CanPlay(out reason, out preventer);
-            string preventerId = preventer?.Id.ToString() ?? "<null>";
-            MainFile.Logger.Info($"FTUE check card={card.Id} canPlay={canPlay} reason={reason} preventer={preventerId}");
             if (!canPlay && reason == UnplayableReason.EnergyCostTooHigh)
             {
-                MainFile.Logger.Info($"FTUE tracking Jhin energy prompt for {card.Id}");
                 _currentFtueCard = card;
             }
             else
             {
-                MainFile.Logger.Info($"FTUE not tracking card={card.Id}");
                 _currentFtueCard = null;
             }
         }
@@ -258,36 +253,25 @@ public static class JhinCannotPlayFtuePatch
                 CardModel? card = _currentFtueCard;
                 if (card is null)
                 {
-                    MainFile.Logger.Info("FTUE ready with no tracked Jhin card");
                     return;
                 }
 
                 LocString? prompt = LocString.GetIfExists(CardsTable, NoEnergyKey);
                 if (prompt is null)
                 {
-                    MainFile.Logger.Info("FTUE ready but localized no-energy prompt was missing");
                     return;
                 }
 
                 string text = prompt.GetFormattedText();
                 if (string.IsNullOrWhiteSpace(text))
                 {
-                    MainFile.Logger.Info("FTUE ready but localized no-energy prompt was empty");
                     return;
                 }
 
                 object? description = AccessTools.Field(typeof(NCannotPlayCardFtue), "_description")?.GetValue(__instance);
                 if (description is not null)
                 {
-                    string? before = AccessTools.Property(description.GetType(), "Text")?.GetValue(description) as string;
-                    MainFile.Logger.Info($"FTUE overriding description for {card.Id}: before='{before}' after='{text}'");
                     AccessTools.Property(description.GetType(), "Text")?.SetValue(description, text);
-                    string? after = AccessTools.Property(description.GetType(), "Text")?.GetValue(description) as string;
-                    MainFile.Logger.Info($"FTUE description after set for {card.Id}: '{after}'");
-                }
-                else
-                {
-                    MainFile.Logger.Info($"FTUE description node missing for {card.Id}");
                 }
             }
             finally
