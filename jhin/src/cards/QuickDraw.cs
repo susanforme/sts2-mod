@@ -12,28 +12,37 @@ using jhin.CardPools;
 
 namespace jhin.Cards;
 
+/// <summary>
+/// 快速拔枪 / Quick Draw — 0 cost, shoot attack.
+/// 3 dmg + draw 1. Upgrade: 5 dmg + draw 1.
+/// </summary>
 [Pool(typeof(JhinCardPool))]
-public class CalmReload() : AbstractJhinCard(
-    cost: 1,
-    type: CardType.Skill,
+public class QuickDraw() : AbstractShootCard(
+    cost: 0,
     rarity: CardRarity.Common,
-    target: TargetType.Self)
+    target: TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(8, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(JhinKeywords.Reload),
+        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ReloadAction.Execute(Owner);
-        await CommonActions.CardBlock(this, cardPlay);
+        if (!TryShoot(choiceContext))
+        {
+            return;
+        }
+
+        await PerformShootAttack(choiceContext, cardPlay.Target);
+        await JhinCombatActionUtil.Draw(choiceContext, Owner, 1);
+        EndFlourishContext();
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

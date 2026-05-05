@@ -12,28 +12,37 @@ using jhin.CardPools;
 
 namespace jhin.Cards;
 
+/// <summary>
+/// 完美姿态 / Perfect Stance — 1 cost, skill.
+/// 6 Block. If 4 bullets, +6 Block. Upgrade: 8 Block, +8 Block.
+/// </summary>
 [Pool(typeof(JhinCardPool))]
-public class CalmReload() : AbstractJhinCard(
+public class PerfectStance() : AbstractJhinCard(
     cost: 1,
     type: CardType.Skill,
     rarity: CardRarity.Common,
     target: TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(8, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(JhinKeywords.Reload),
+        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ReloadAction.Execute(Owner);
         await CommonActions.CardBlock(this, cardPlay);
+
+        if (JhinCombatActionUtil.HasBulletCount(Owner, 4))
+        {
+            int bonusBlock = IsUpgraded ? 8 : 6;
+            await CreatureCmd.GainBlock(Owner.Creature, bonusBlock, ValueProp.Move, cardPlay, false);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(2m);
     }
 }

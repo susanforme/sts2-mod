@@ -21,5 +21,10 @@ public static class ReloadAction
         }
 
         state.ReloadToFull();
+
+        if (player is not null)
+        {
+            ReloadEventBus.Notify(player, state);
+        }
     }
 }

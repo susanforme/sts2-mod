@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Nodes.Ftue;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using jhin.Actions;
 using jhin.Cards;
 using jhin.Magazine;
@@ -31,6 +32,9 @@ public static class PlayerPopulateCombatStatePatch
         BulletPower bulletPower = (BulletPower)ModelDb.Power<BulletPower>().ToMutable();
         bulletPower.ApplyInternal(__instance.Creature, state.Bullets, silent: true);
         state.AttachPower(bulletPower);
+
+        JhinCombatTrackerPower trackerPower = (JhinCombatTrackerPower)ModelDb.Power<JhinCombatTrackerPower>().ToMutable();
+        trackerPower.ApplyInternal(__instance.Creature, 1, silent: true);
     }
 }
 
@@ -49,6 +53,7 @@ public static class PlayerAfterCombatEndPatch
         FlourishContext.End();
         FlourishEventBus.ClearListeners();
         BulletEmptyEventBus.ClearListeners();
+        ReloadEventBus.ClearListeners();
         LotusTrapPower.ClearPendingWeak();
     }
 }
@@ -65,6 +70,24 @@ public static class PlayerCombatStateResetEnergyPatch
         }
 
         state.StartTurn();
+
+        // Check for powers that trigger at turn start
+        // Use the registry to find the Player associated with this combat state
+        MegaCrit.Sts2.Core.Entities.Players.Player? player = JhinMagazineStateRegistry.GetPlayerFromCombatState(__instance);
+        if (player?.Creature is null || !player.Creature.IsAlive)
+        {
+            return;
+        }
+
+        AwaitApplausePower? awaitPower = player.Creature.GetPower<AwaitApplausePower>();
+        if (awaitPower is not null)
+        {
+            _ = MegaCrit.Sts2.Core.Commands.PlayerCmd.GainEnergy(1m, player);
+            player.Creature.RemovePowerInternal(awaitPower);
+        }
+
+        ActorsInstinctPower? instinctPower = player.Creature.GetPower<ActorsInstinctPower>();
+        instinctPower?.OnTurnStart();
     }
 }
 

@@ -116,11 +116,14 @@ public class LotusTrapPower : CustomPowerModel, IAddDumbVariablesToPowerDescript
         if (existingPower is not null)
         {
             existingPower.SetAmount(existingPower.Amount + amount, silent: false);
-            return;
+        }
+        else
+        {
+            WeakPower weakPower = (WeakPower)ModelDb.Power<WeakPower>().ToMutable();
+            weakPower.ApplyInternal(target, amount, silent: false);
         }
 
-        WeakPower weakPower = (WeakPower)ModelDb.Power<WeakPower>().ToMutable();
-        weakPower.ApplyInternal(target, amount, silent: false);
+        StageControlPower.TryApplyMarkOnWeak(target, target);
     }
 
     private static Creature ResolveDamageDealer(CombatState combatState, Creature fallback)

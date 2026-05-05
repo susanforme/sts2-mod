@@ -5,38 +5,42 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using jhin.CardPools;
 using jhin.Actions;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using jhin.CardPools;
 
 namespace jhin.Cards;
 
+/// <summary>
+/// 观察弱点 / Observe Weakness — 1 cost, skill.
+/// Apply 2 Mark. If target below 50% HP, draw 1. Upgrade: 3 Mark.
+/// </summary>
 [Pool(typeof(JhinCardPool))]
-public class Reload() : AbstractJhinCard(
-    cost: 0,
+public class ObserveWeakness() : AbstractJhinCard(
+    cost: 1,
     type: CardType.Skill,
     rarity: CardRarity.Common,
-    target: TargetType.Self)
+    target: TargetType.AnyEnemy)
 {
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
-        HoverTipFactory.FromKeyword(JhinKeywords.Reload),
+        HoverTipFactory.FromKeyword(JhinKeywords.Mark),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ReloadAction.Execute(Owner);
-        JhinCombatActionUtil.DisableFlourishThisTurn(Owner);
-        await JhinCombatActionUtil.Draw(choiceContext, Owner, IsUpgraded ? 2 : 1);
-    }
+        if (cardPlay.Target is null)
+        {
+            return;
+        }
 
-    protected override PileType GetResultPileType()
-    {
-        return PileType.Exhaust;
+        ApplyMarkAction.Execute(cardPlay.Target, IsUpgraded ? 3 : 2);
+
+        if (cardPlay.Target.MaxHp > 0 && (decimal)cardPlay.Target.CurrentHp / cardPlay.Target.MaxHp < 0.5m)
+        {
+            await JhinCombatActionUtil.Draw(choiceContext, Owner, 1);
+        }
     }
 
     protected override void OnUpgrade()

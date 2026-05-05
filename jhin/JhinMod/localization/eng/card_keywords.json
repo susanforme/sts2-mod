@@ -6,5 +6,7 @@
   "JHIN-MARK.title": "Mark",
   "JHIN-MARK.description": "When Jhin's next [gold]Shoot[/gold] card hits a marked enemy, it deals {markDamagePerStack} additional damage per stack and removes all Mark. Non-shoot damage does not consume it.",
   "JHIN-LOTUS_TRAP.title": "Lotus Trap",
-  "JHIN-LOTUS_TRAP.description": "Triggers and is removed after the enemy attacks. Each stack deals 6 damage and applies 1 Weak; if this damage kills, deal 4 damage to all enemies per stack."
+  "JHIN-LOTUS_TRAP.description": "Triggers and is removed after the enemy attacks. Each stack deals 6 damage and applies 1 Weak; if this damage kills, deal 4 damage to all enemies per stack.",
+  "JHIN-RELOAD.title": "Reload",
+  "JHIN-RELOAD.description": "Sets your [gold]Bullets[/gold] back to 4, and may trigger other reload-related effects."
 }

@@ -16,4 +16,7 @@ public static class JhinKeywords
 
     [CustomEnum("lotus_trap")]
     public static CardKeyword LotusTrap;
+
+    [CustomEnum("reload")]
+    public static CardKeyword Reload;
 }

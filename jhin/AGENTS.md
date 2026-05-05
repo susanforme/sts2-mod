@@ -1,5 +1,9 @@
 # 📜 AGENTS.md
 
+## 严重规范
+
+不允许使用任何subagent，所有功能必须由主agent完成。
+
 ## 🎯 资源使用规范（强制）
 
 ### 1. 卡牌资源（Card Images）

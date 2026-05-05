@@ -15,6 +15,9 @@ public sealed class JhinMagazineState
     public int FlourishCountThisTurn { get; private set; }
     public int FlourishCountThisCombat { get; private set; }
     public bool UsedShootThisTurn { get; private set; }
+    public bool UsedSkillThisTurn { get; private set; }
+    public bool UsedNonShootAttackThisTurn { get; private set; }
+    public int AttackCardCountThisTurn { get; private set; }
     public BulletPower? AppliedPower { get; private set; }
     public bool HasForcedFlourish => _forceNextShotFlourish;
 
@@ -25,6 +28,9 @@ public sealed class JhinMagazineState
         FlourishCountThisTurn = 0;
         FlourishCountThisCombat = 0;
         UsedShootThisTurn = false;
+        UsedSkillThisTurn = false;
+        UsedNonShootAttackThisTurn = false;
+        AttackCardCountThisTurn = 0;
         _flourishDisabledThisTurn = false;
         _forceNextShotFlourish = false;
         SyncPower();
@@ -40,6 +46,9 @@ public sealed class JhinMagazineState
 
         FlourishCountThisTurn = 0;
         UsedShootThisTurn = false;
+        UsedSkillThisTurn = false;
+        UsedNonShootAttackThisTurn = false;
+        AttackCardCountThisTurn = 0;
         _flourishDisabledThisTurn = false;
 
         if (reloaded)
@@ -107,6 +116,21 @@ public sealed class JhinMagazineState
     {
         Bullets = MaxBullets;
         SyncPowerForce();
+    }
+
+    public void RecordSkillPlayed()
+    {
+        UsedSkillThisTurn = true;
+    }
+
+    public void RecordNonShootAttackPlayed()
+    {
+        UsedNonShootAttackThisTurn = true;
+    }
+
+    public void RecordAttackCardPlayed()
+    {
+        AttackCardCountThisTurn++;
     }
 
     public void DisableFlourishThisTurn()
@@ -199,6 +223,17 @@ public static class JhinMagazineStateRegistry
         return PlayersByCombatState.TryGetValue(combatState, out Player? player)
             ? TryGet(player)
             : null;
+    }
+
+    public static Player? GetPlayerFromCombatState(PlayerCombatState? combatState)
+    {
+        if (combatState is null)
+        {
+            return null;
+        }
+
+        PlayersByCombatState.TryGetValue(combatState, out Player? player);
+        return player;
     }
 
     public static void Clear(Player player)
