@@ -117,13 +117,6 @@ public static class JhinCombatActionUtil
             return;
         }
 
-        StrengthPower? existingPower = target.GetPower<StrengthPower>();
-        if (existingPower is not null)
-        {
-            existingPower.SetAmount(existingPower.Amount + amount, silent: false);
-            return;
-        }
-
         StrengthPower strengthPower = (StrengthPower)ModelDb.Power<StrengthPower>().ToMutable();
         strengthPower.ApplyInternal(target, amount, silent: false);
     }
@@ -132,13 +125,6 @@ public static class JhinCombatActionUtil
     {
         if (target is null || amount <= 0 || !target.IsAlive || !target.CanReceivePowers)
         {
-            return;
-        }
-
-        DexterityPower? existingPower = target.GetPower<DexterityPower>();
-        if (existingPower is not null)
-        {
-            existingPower.SetAmount(existingPower.Amount + amount, silent: false);
             return;
         }
 
