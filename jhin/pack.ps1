@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 $ModId       = "JhinMod"
 $ModName     = "Jhin"
-$Author      = "YourName"
+$Author      = "桃花笑春风"
 $Version     = "0.1.0"
 $BaseLibVersion = "3.1.0"
 $ProjectDir  = "E:\code\sts2-lol-mod\jhin"

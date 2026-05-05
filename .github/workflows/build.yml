@@ -80,7 +80,7 @@ jobs:
           @{
             id = "$env:MOD_ID"
             name = "Jhin"
-            author = "JhinMod"
+            author = "桃花笑春风"
             description = "Jhin character mod for Slay the Spire 2."
             version = "0.1.0"
             has_dll = $true
