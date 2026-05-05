@@ -17,6 +17,8 @@
   "JHIN-DEADLY_FLOURISH.description": "消耗 1 层[gold]子弹[/gold]。造成 {Damage:diff()} 点伤害。若目标带有[gold]标记[/gold]，施加 1 层[gold]易伤[/gold]。[gold]华彩[/gold]：改为施加 2 层。",
   "JHIN-RELOAD.title": "装填",
   "JHIN-RELOAD.description": "将当前[gold]子弹[/gold]装填至 4 层。",
+  "JHIN-CURTAIN_CALL.title": "谢幕",
+  "JHIN-CURTAIN_CALL.description": "只能在[gold]子弹[/gold]为 0 时使用。随机攻击 {shotCount} 次，造成 {Damage:diff()} 点伤害。目标生命越低，伤害越高，最多提高 {maxDamageBonusPercent}%。消耗。",
   "JHIN-SHOOT_DISABLED_NO_BULLETS": "子弹已尽……但艺术，从不依赖火药。",
   "JHIN-SHOOT_DISABLED_NO_ENERGY": "节拍，停了。"
 }

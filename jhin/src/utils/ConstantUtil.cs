@@ -49,4 +49,11 @@ public static class ConstantUtil
     /// Integer display value for the low-HP threshold percent.
     /// </summary>
     public static int LowHpThresholdPercent => decimal.ToInt32(LowHpThreshold * 100m);
+
+    /// <summary>
+    /// Curtain Call gains up to this multiplier as the target approaches 0 HP.
+    /// </summary>
+    public const decimal CurtainCallMissingHpMultiplierScale = 1m;
+
+    public static int CurtainCallMaxDamageBonusPercent => decimal.ToInt32(CurtainCallMissingHpMultiplierScale * 100m);
 }

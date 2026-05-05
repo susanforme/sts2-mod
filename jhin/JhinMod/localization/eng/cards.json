@@ -17,6 +17,8 @@
   "JHIN-DEADLY_FLOURISH.description": "Spend 1 [gold]Bullet[/gold]. Deal {Damage:diff()} damage. If the target has [gold]Mark[/gold], apply 1 [gold]Vulnerable[/gold]. [gold]Flourish[/gold]: apply 2 instead.",
   "JHIN-RELOAD.title": "Reload",
   "JHIN-RELOAD.description": "Reload your current [gold]Bullets[/gold] to 4.",
+  "JHIN-CURTAIN_CALL.title": "Curtain Call",
+  "JHIN-CURTAIN_CALL.description": "Can only be played with 0 [gold]Bullets[/gold]. Attack random enemies {shotCount} times for {Damage:diff()} damage. Lower-HP targets take more damage, up to {maxDamageBonusPercent}% more. Exhaust.",
   "JHIN-SHOOT_DISABLED_NO_BULLETS": "The chamber is empty... but art never relied on gunpowder.",
   "JHIN-SHOOT_DISABLED_NO_ENERGY": "The rhythm has stopped."
 }

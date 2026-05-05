@@ -13,6 +13,7 @@
 | `JHIN-GRAND_STAGE` | 盛大布景 | Grand Stage | 技能 | `2` | 罕见 | 自身 | `src/cards/GrandStage.cs` | 获得格挡，并给予所有敌人 1 层莲花陷阱。 |
 | `JHIN-DEADLY_FLOURISH` | 致命华彩 | Deadly Flourish | 攻击 / 射击 | `2` | 稀有 | 单体敌人 | `src/cards/DeadlyFlourish.cs` | 造成射击伤害；若目标在命中前带有标记，则施加易伤，华彩时易伤层数更高。 |
 | `JHIN-RELOAD` | 装填 | Reload | 技能 | `0` | 罕见 | 自身 | `src/cards/Reload.cs` | 将当前子弹装填至 4。 |
+| `JHIN-CURTAIN_CALL` | 谢幕 | Curtain Call | 攻击 / 谢幕 | `2` | 稀有 | 随机敌人 | `src/cards/CurtainCall.cs` | 只能在子弹为 0 时使用；随机攻击 4 次，每段根据目标当前生命损失独立提高伤害，使用后消耗。 |
 
 ## 备注
 
@@ -21,4 +22,5 @@
 | 射击牌统一入口 | 当前 `普通射击`、`瞄准射击`、`远距狙击`、`致命华彩` 都继承 `AbstractShootCard`。 |
 | 标记联动 | 当前已接入阶段 4 标记系统的牌为 `瞄准射击`、`布置舞台`、`远距狙击`、`致命华彩`。 |
 | 莲花陷阱联动 | 当前已接入阶段 5 莲花陷阱系统的牌为 `设下陷阱`、`盛大布景`。 |
+| 谢幕联动 | 当前 `谢幕` 使用独立的谢幕条件与四段随机攻击 Action，不消耗子弹，也不触发普通射击华彩判定。 |
 | 占位图规则 | 当前卡牌默认使用 `JhinMod/Images/card_placeholder.png`。 |

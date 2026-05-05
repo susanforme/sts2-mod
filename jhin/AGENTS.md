@@ -71,6 +71,10 @@ C:\Users\<YourUsername>\AppData\Roaming\SlayTheSpire2\logs
 ```
 YourUsername 需要替换为实际的Windows用户名。
 
+## 碰到复杂问题怎么办
+
+先去 `knowledge/` 目录下看看有没有相关的笔记.
+
 ## 修改后
 
 必须执行编译和部署流程.

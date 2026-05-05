@@ -5,6 +5,7 @@ $ModId       = "JhinMod"
 $ModName     = "Jhin"
 $Author      = "YourName"
 $Version     = "0.1.0"
+$BaseLibVersion = "3.1.0"
 $ProjectDir  = "E:\code\sts2-mod\jhin"
 $GodotDir    = "E:\code\sts2-mod-demo\Spine" + [char]0x52A8 + [char]0x753B + [char]0x8BF7 + [char]0x4E0B + [char]0x8F7D
 $GodotExe    = "$GodotDir\godot-4.2-4.5.1-stable-mono.exe"
@@ -21,6 +22,16 @@ if ($LASTEXITCODE -ne 0) { Write-Host "Build failed"; exit 1 }
 Write-Host "[2/4] Preparing output dir..."
 if (Test-Path $OutDir) { Remove-Item $OutDir -Recurse -Force }
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+
+$BaseLibContentDir = "$env:USERPROFILE\.nuget\packages\alchyr.sts2.baselib\$BaseLibVersion\Content"
+$BaseLibResourceDir = "$ProjectDir\lib\BaseLib"
+if (-not (Test-Path "$BaseLibContentDir\BaseLib.json") -or -not (Test-Path "$BaseLibContentDir\BaseLib.pck")) {
+    Write-Host "BaseLib package content not found: $BaseLibContentDir"
+    exit 1
+}
+New-Item -ItemType Directory -Force -Path $BaseLibResourceDir | Out-Null
+Copy-Item "$BaseLibContentDir\BaseLib.json" "$BaseLibResourceDir\BaseLib.json"
+Copy-Item "$BaseLibContentDir\BaseLib.pck" "$BaseLibResourceDir\BaseLib.pck"
 
 # 3. Export PCK via Godot headless (Start-Process -Wait ensures we block until done)
 Write-Host "[3/4] Exporting PCK..."
@@ -45,13 +56,12 @@ Get-ChildItem $OutDir | ForEach-Object { Write-Host "  $($_.Name)  ($([math]::Ro
 if ($Deploy) {
     Write-Host ""
     Write-Host "Deploying BaseLib..."
-    $blSrc = "$ProjectDir\lib\BaseLib"
     $blDst = "$GameModsDir\BaseLib"
     if (Test-Path $blDst) { Remove-Item $blDst -Recurse -Force }
-    New-Item -ItemType Directory -Force $blDst | Out-Null
-    Copy-Item "$blSrc\BaseLib.dll" "$blDst\BaseLib.dll"
-    Copy-Item "$blSrc\BaseLib.pck" "$blDst\BaseLib.pck"
-    Copy-Item "$blSrc\BaseLib.json" "$blDst\BaseLib.json"
+    New-Item -ItemType Directory -Force -Path $blDst | Out-Null
+    Copy-Item "$BuildDir\BaseLib.dll" "$blDst\BaseLib.dll"
+    Copy-Item "$BaseLibContentDir\BaseLib.pck" "$blDst\BaseLib.pck"
+    Copy-Item "$BaseLibContentDir\BaseLib.json" "$blDst\BaseLib.json"
     Write-Host "Deployed: $blDst"
 
     Write-Host "Deploying $ModId..."
