@@ -48,6 +48,7 @@ public static class PlayerAfterCombatEndPatch
         JhinMagazineStateRegistry.Clear(__instance);
         FlourishContext.End();
         FlourishEventBus.ClearListeners();
+        LotusTrapPower.ClearPendingWeak();
     }
 }
 

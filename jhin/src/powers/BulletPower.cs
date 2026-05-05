@@ -1,5 +1,7 @@
 using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using jhin.Magazine;
 
@@ -20,5 +22,11 @@ public class BulletPower : CustomPowerModel
     public void SyncFrom(JhinMagazineState state)
     {
         SetAmount(state.Bullets);
+    }
+
+    public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        LotusTrapPower.ApplyPendingWeak(side);
+        return Task.CompletedTask;
     }
 }

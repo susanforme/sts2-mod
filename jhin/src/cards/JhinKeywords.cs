@@ -13,4 +13,7 @@ public static class JhinKeywords
 
     [CustomEnum("mark")]
     public static CardKeyword Mark;
+
+    [CustomEnum("lotus_trap")]
+    public static CardKeyword LotusTrap;
 }

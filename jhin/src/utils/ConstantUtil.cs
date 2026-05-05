@@ -11,6 +11,21 @@ public static class ConstantUtil
     public const int MarkDamagePerStack = 3;
 
     /// <summary>
+    /// Damage dealt by each Lotus Trap stack when it triggers.
+    /// </summary>
+    public const int LotusTrapDamagePerStack = 6;
+
+    /// <summary>
+    /// Weak applied by each Lotus Trap stack when it triggers.
+    /// </summary>
+    public const int LotusTrapWeakPerStack = 1;
+
+    /// <summary>
+    /// Damage dealt to each living enemy when Lotus Trap kills its owner.
+    /// </summary>
+    public const int LotusTrapDeathExplosionDamage = 4;
+
+    /// <summary>
     /// Whisper's flourish damage multiplier.
     /// </summary>
     public const decimal WhisperFlourishMultiplier = 1.5m;

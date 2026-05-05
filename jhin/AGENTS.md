@@ -62,6 +62,15 @@
 
 不允许使用游戏的私有函数方法，必须使用公开的API接口进行调用。
 
+## 日志
+
+运行时日志在
+
+```
+C:\Users\<YourUsername>\AppData\Roaming\SlayTheSpire2\logs
+```
+YourUsername 需要替换为实际的Windows用户名。
+
 ## 修改后
 
 必须执行编译和部署流程.
