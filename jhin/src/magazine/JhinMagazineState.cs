@@ -55,6 +55,15 @@ public sealed class JhinMagazineState
         SyncPowerForce();
     }
 
+    public void RestoreBullet()
+    {
+        if (Bullets < MaxBullets)
+        {
+            Bullets++;
+            SyncPowerForce();
+        }
+    }
+
     public void StartTurn()
     {
         bool reloaded = Bullets == 0;

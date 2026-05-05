@@ -179,6 +179,10 @@
   "JHIN-PERFECT_CRIME.description": "Gain -4-+5+ Strength.\nAt the start of your turn, gain -1-+2+ additional Strength.",
   "JHIN-FINAL_ACT_ART.title": "Final Act Art",
   "JHIN-FINAL_ACT_ART.description": "At the start of your turn, if any enemy is below -30%-+50%+ HP, gain -2-+3+ Energy.",
+  "JHIN-SOUL_SHOT.title": "Soul Shot",
+  "JHIN-SOUL_SHOT.description": "Spend 1 [gold]Bullet[/gold].\nDeal !D! damage.\nApply 2 [gold]Mark[/gold].\nIf killed, restore 1 [gold]Bullet[/gold].\n[gold]Flourish[/gold]: deal 28 damage, apply 4 [gold]Mark[/gold] and 3 [gold]Vulnerable[/gold] instead.",
+  "JHIN-FINAL_ACT_RELOAD.title": "Final Act Reload",
+  "JHIN-FINAL_ACT_RELOAD.description": "Reload your [gold]Bullets[/gold] to 4.\nDraw 3 cards.\nYour next [gold]Shoot[/gold] this turn triggers [gold]Flourish[/gold].\n[gold]Exhaust.[/gold]",
   "JHIN-SHOOT_DISABLED_NO_BULLETS": "The chamber is empty... but art never relied on gunpowder.",
   "JHIN-SHOOT_DISABLED_NO_ENERGY": "The rhythm has stopped."
 }

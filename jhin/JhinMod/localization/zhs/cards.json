@@ -179,6 +179,10 @@
   "JHIN-PERFECT_CRIME.description": "获得 -4-+5+ 点力量。\n每回合开始时，额外获得 -1-+2+ 点力量。",
   "JHIN-FINAL_ACT_ART.title": "终幕艺术",
   "JHIN-FINAL_ACT_ART.description": "每回合开始时，若任何敌人生命低于 -30%-+50%+，获得 -2-+3+ 点能量。",
+  "JHIN-SOUL_SHOT.title": "灵魂射击",
+  "JHIN-SOUL_SHOT.description": "消耗 1 层[gold]子弹[/gold]。\n造成 !D! 点伤害。\n给予目标 2 层[gold]标记[/gold]。\n若击杀，恢复 1 层[gold]子弹[/gold]。\n[gold]华彩[/gold]：改为造成 28 点伤害，给予 4 层[gold]标记[/gold]和 3 层[gold]易伤[/gold]。",
+  "JHIN-FINAL_ACT_RELOAD.title": "终幕装填",
+  "JHIN-FINAL_ACT_RELOAD.description": "将[gold]子弹[/gold]装填至 4 层。\n抽 3 张牌。\n本回合下一张[gold]射击[/gold]牌必定触发[gold]华彩[/gold]。\n[gold]消耗。[/gold]",
   "JHIN-SHOOT_DISABLED_NO_BULLETS": "子弹已尽……但艺术，从不依赖火药。",
   "JHIN-SHOOT_DISABLED_NO_ENERGY": "节拍，停了。"
 }
