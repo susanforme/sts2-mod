@@ -1,6 +1,7 @@
 #nullable enable
 
 using HarmonyLib;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using jhin.Powers;
 
@@ -16,14 +17,26 @@ public static class LotusTrapMonsterPerformMovePatch
             && __instance.IntendsToAttack;
     }
 
-    public static void Postfix(MonsterModel __instance, bool __state)
+    public static void Postfix(MonsterModel __instance, bool __state, ref Task __result)
     {
         if (!__state)
         {
             return;
         }
 
-        LotusTrapPower? lotusTrapPower = __instance.Creature?.GetPower<LotusTrapPower>();
-        lotusTrapPower?.TriggerAfterOwnerAttack();
+        __result = TriggerLotusTrapAfterMove(__instance, __result);
+    }
+
+    private static async Task TriggerLotusTrapAfterMove(MonsterModel monster, Task originalMoveTask)
+    {
+        await originalMoveTask;
+
+        LotusTrapPower? lotusTrapPower = monster.Creature?.GetPower<LotusTrapPower>();
+        if (lotusTrapPower is null)
+        {
+            return;
+        }
+
+        await lotusTrapPower.TriggerAfterOwnerAttack(new BlockingPlayerChoiceContext());
     }
 }

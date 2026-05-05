@@ -3,8 +3,10 @@
 using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -42,21 +44,29 @@ public class LotusTrapPower : CustomPowerModel, IAddDumbVariablesToPowerDescript
         SetAmount(Amount + amount, silent: false);
     }
 
-    public void TriggerAfterOwnerAttack()
+    public async Task TriggerAfterOwnerAttack(PlayerChoiceContext choiceContext)
     {
         Creature? target = Owner;
-        if (target is null || Amount <= 0 || !target.IsAlive)
+        CombatState? combatState = target?.CombatState;
+        if (target is null || combatState is null || Amount <= 0 || !target.IsAlive)
         {
             return;
         }
 
         int stacks = Amount;
         Flash();
-        DamageResult damageResult = target.LoseHpInternal(stacks * DamagePerStack, ValueProp.Move);
+        IEnumerable<DamageResult> damageResults = await CreatureCmd.Damage(
+            choiceContext,
+            target,
+            stacks * DamagePerStack,
+            ValueProp.Move,
+            Applier ?? target);
+        DamageResult damageResult = damageResults.First(result => result.Receiver == target);
 
         if (damageResult.WasTargetKilled)
         {
-            TriggerDeathExplosion(target);
+            Creature dealer = ResolveDamageDealer(combatState, target);
+            await TriggerDeathExplosion(choiceContext, combatState, dealer, stacks);
             return;
         }
 
@@ -113,16 +123,22 @@ public class LotusTrapPower : CustomPowerModel, IAddDumbVariablesToPowerDescript
         weakPower.ApplyInternal(target, amount, silent: false);
     }
 
-    private static void TriggerDeathExplosion(Creature killedTarget)
+    private static Creature ResolveDamageDealer(CombatState combatState, Creature fallback)
     {
-        if (killedTarget.CombatState is null)
+        return combatState.PlayerCreatures.FirstOrDefault(creature => creature.IsAlive) ?? fallback;
+    }
+
+    private static async Task TriggerDeathExplosion(PlayerChoiceContext choiceContext, CombatState combatState, Creature dealer, int stacks)
+    {
+        List<Creature> enemies = combatState.HittableEnemies
+            .Where(enemy => enemy.IsAlive)
+            .ToList();
+
+        if (enemies.Count == 0)
         {
             return;
         }
 
-        foreach (Creature enemy in killedTarget.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive))
-        {
-            enemy.LoseHpInternal(DeathExplosionDamage, ValueProp.Move);
-        }
+        await CreatureCmd.Damage(choiceContext, enemies, stacks * DeathExplosionDamage, ValueProp.Move, dealer);
     }
 }
