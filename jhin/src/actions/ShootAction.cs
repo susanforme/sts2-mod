@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using jhin.Magazine;
 using jhin.Powers;
+using jhin.Relics;
 
 namespace jhin.Actions;
 
@@ -43,6 +44,12 @@ public static class ShootAction
         if (player is not null && consumedCount > 0)
         {
             MasterpieceBornPower.OnMarkConsumed(player);
+
+            if (!target.IsAlive && player.GetRelic<Relics.ShowTicket>() is not null)
+            {
+                player.Gold += 6;
+                player.GetRelic<Relics.ShowTicket>()!.Flash();
+            }
         }
     }
 

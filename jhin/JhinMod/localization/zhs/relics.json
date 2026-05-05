@@ -10,5 +10,24 @@
   "JHIN-EMPTY_SHELL.flavor": "最后一发离膛后，舞步才真正开始。",
   "JHIN-LAST_WHISPER.title": "最后的轻语",
   "JHIN-LAST_WHISPER.description": "当[gold]华彩[/gold]触发时，本次攻击伤害提高 {flourishMultiplierPercent}%。若目标生命值低于 {lowHpThresholdPercent}%，额外造成 {lowHpBonusDamage} 点伤害。",
-  "JHIN-LAST_WHISPER.flavor": "当四声枪响归于沉寂，最后的低语开始……终幕的一响。"
+  "JHIN-LAST_WHISPER.flavor": "当四声枪响归于沉寂，最后的低语开始……终幕的一响。",
+  "JHIN-FOURTH_BULLET.title": "第四颗子弹",
+  "JHIN-FOURTH_BULLET.description": "每场战斗中第一次[gold]华彩[/gold]造成的伤害翻倍。",
+  "JHIN-FOURTH_BULLET.flavor": "第四发从来不只是数字……它是签名。",
+  "JHIN-FINE_GUN_OIL.title": "精致枪油",
+  "JHIN-FINE_GUN_OIL.description": "每当你装填，下一张[gold]射击[/gold]牌额外造成 4 点伤害。",
+  "JHIN-FINE_GUN_OIL.flavor": "润滑良好的低语，比风更快。",
+  "JHIN-LOTUS_DEVICE.title": "莲花装置",
+  "JHIN-LOTUS_DEVICE.description": "每场战斗开始时，给予随机敌人 2 层[gold]莲花陷阱[/gold]。",
+  "JHIN-LOTUS_DEVICE.flavor": "美在最意想不到处绽放。",
+  "JHIN-SHOW_TICKET.title": "演出门票",
+  "JHIN-SHOW_TICKET.description": "当你击杀带有[gold]标记[/gold]的敌人时，获得 6 金币。",
+  "JHIN-SHOW_TICKET.flavor": "满座的演出，收益不止掌声。",
+  "JHIN-ACT_FOUR_SCRIPT.title": "第四幕剧本",
+  "JHIN-ACT_FOUR_SCRIPT.description": "每回合第一次[gold]华彩[/gold]：抽 1 张牌并获得 1 点能量。",
+  "JHIN-ACT_FOUR_SCRIPT.flavor": "每一部杰作，都有最后一幕等待登场。",
+  "JHIN-PERFECT_STAGE.title": "完美舞台",
+  "JHIN-PERFECT_STAGE.description": "如果你在一回合内刚好使用 4 张牌，回合结束时获得 12 点格挡。",
+  "JHIN-PERFECT_STAGE.flavor": "精准不是完美。完美是精准……四次。"
+}
 }

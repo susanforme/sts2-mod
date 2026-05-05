@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using jhin.Magazine;
+using jhin.Relics;
 
 namespace jhin.Powers;
 
@@ -43,6 +44,8 @@ public class BulletPower : CustomPowerModel
             state.RecordSkillPlayed();
         }
 
+        state.IncrementCardsPlayed();
+
         if (cardPlay.Card.Type == CardType.Attack)
         {
             state.RecordAttackCardPlayed();
@@ -61,6 +64,13 @@ public class BulletPower : CustomPowerModel
     public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         LotusTrapPower.ApplyPendingWeak(side);
+
+        if (Owner?.Player is not null)
+        {
+            Owner.Player.GetRelic<Relics.ActFourScript>()?.ResetTurnFlag();
+            Owner.Player.GetRelic<Relics.PerfectStage>()?.CheckTurnEnd();
+        }
+
         return Task.CompletedTask;
     }
 }

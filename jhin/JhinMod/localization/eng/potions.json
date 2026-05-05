@@ -1,5 +1,14 @@
 {
   "JHIN-FLOURISH_POTION.title": "Flourish Potion",
   "JHIN-FLOURISH_POTION.description": "This turn, your next [gold]Shoot[/gold] card triggers [gold]Flourish[/gold].",
-  "JHIN-FLOURISH_POTION.flavor": "A single drop is enough to begin the finale early."
+  "JHIN-FLOURISH_POTION.flavor": "A single drop is enough to begin the finale early.",
+  "JHIN-RELOAD_POTION.title": "Reload Potion",
+  "JHIN-RELOAD_POTION.description": "Reload your [gold]Bullets[/gold] to 4. Draw 1 card.",
+  "JHIN-RELOAD_POTION.flavor": "A quick breath between acts.",
+  "JHIN-LOTUS_POTION.title": "Lotus Potion",
+  "JHIN-LOTUS_POTION.description": "Apply 2 [gold]Lotus Trap[/gold] to all enemies.",
+  "JHIN-LOTUS_POTION.flavor": "Every petal is a promise of pain.",
+  "JHIN-CURTAIN_CALL_POTION.title": "Curtain Call Potion",
+  "JHIN-CURTAIN_CALL_POTION.description": "Set your [gold]Bullets[/gold] to 0. Draw 2 cards.",
+  "JHIN-CURTAIN_CALL_POTION.flavor": "The audience demands an encore... give them the finale."
 }

@@ -19,6 +19,7 @@ public sealed class JhinMagazineState
     public bool UsedSkillThisTurn { get; private set; }
     public bool UsedNonShootAttackThisTurn { get; private set; }
     public int AttackCardCountThisTurn { get; private set; }
+    public int CardsPlayedThisTurn { get; private set; }
     public BulletPower? AppliedPower { get; private set; }
     public bool HasForcedFlourish => _forceNextShotFlourish;
     public bool HasTriggeredFlourishThisTurn => FlourishCountThisTurn > 0;
@@ -33,6 +34,7 @@ public sealed class JhinMagazineState
         UsedSkillThisTurn = false;
         UsedNonShootAttackThisTurn = false;
         AttackCardCountThisTurn = 0;
+        CardsPlayedThisTurn = 0;
         _flourishDisabledThisTurn = false;
         _forceNextShotFlourish = false;
         SyncPower();
@@ -159,6 +161,11 @@ public sealed class JhinMagazineState
     public void RecordAttackCardPlayed()
     {
         AttackCardCountThisTurn++;
+    }
+
+    public void IncrementCardsPlayed()
+    {
+        CardsPlayedThisTurn++;
     }
 
     public void DisableFlourishThisTurn()

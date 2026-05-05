@@ -10,5 +10,24 @@
   "JHIN-EMPTY_SHELL.flavor": "Only after the last shot leaves the chamber does the dance begin.",
   "JHIN-LAST_WHISPER.title": "Last Whisper",
   "JHIN-LAST_WHISPER.description": "When [gold]Flourish[/gold] triggers, increase this attack's damage by {flourishMultiplierPercent}%. If the target's HP is below {lowHpThresholdPercent}%, deal {lowHpBonusDamage} additional damage.",
-  "JHIN-LAST_WHISPER.flavor": "When four shots fall silent, the final whisper begins... one last crescendo."
+  "JHIN-LAST_WHISPER.flavor": "When four shots fall silent, the final whisper begins... one last crescendo.",
+  "JHIN-FOURTH_BULLET.title": "Fourth Bullet",
+  "JHIN-FOURTH_BULLET.description": "The first [gold]Flourish[/gold] each combat deals double damage.",
+  "JHIN-FOURTH_BULLET.flavor": "The fourth is never just a number... it is a signature.",
+  "JHIN-FINE_GUN_OIL.title": "Fine Gun Oil",
+  "JHIN-FINE_GUN_OIL.description": "After you reload, your next [gold]Shoot[/gold] deals 4 additional damage.",
+  "JHIN-FINE_GUN_OIL.flavor": "A well-oiled whisper travels faster than the wind.",
+  "JHIN-LOTUS_DEVICE.title": "Lotus Device",
+  "JHIN-LOTUS_DEVICE.description": "At the start of each combat, apply 2 [gold]Lotus Trap[/gold] to a random enemy.",
+  "JHIN-LOTUS_DEVICE.flavor": "Beauty blooms where it is least expected.",
+  "JHIN-SHOW_TICKET.title": "Show Ticket",
+  "JHIN-SHOW_TICKET.description": "When you kill an enemy that has [gold]Mark[/gold], gain 6 Gold.",
+  "JHIN-SHOW_TICKET.flavor": "A sold-out show pays in more than applause.",
+  "JHIN-ACT_FOUR_SCRIPT.title": "Act Four Script",
+  "JHIN-ACT_FOUR_SCRIPT.description": "The first [gold]Flourish[/gold] each turn: draw 1 card and gain 1 Energy.",
+  "JHIN-ACT_FOUR_SCRIPT.flavor": "Every masterpiece has a final act waiting in the wings.",
+  "JHIN-PERFECT_STAGE.title": "Perfect Stage",
+  "JHIN-PERFECT_STAGE.description": "If you play exactly 4 cards in a turn, gain 12 Block at the end of turn.",
+  "JHIN-PERFECT_STAGE.flavor": "Precision is not perfection. Perfection is precision... four times over."
+}
 }
