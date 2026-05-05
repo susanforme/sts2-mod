@@ -41,6 +41,11 @@ public static class ShootAction
     /// </summary>
     public static ShootResult Execute(Player? player)
     {
+        if (player is null)
+        {
+            return ShootResult.Failed;
+        }
+
         JhinMagazineState? state = JhinMagazineStateRegistry.TryGet(player);
         if (state is null || !state.CanShoot())
         {
@@ -48,6 +53,11 @@ public static class ShootAction
         }
 
         bool isFlourish = state.TryConsumeBulletAndCheckFlourish();
+        if (state.Bullets == 0)
+        {
+            BulletEmptyEventBus.Notify(player, state);
+        }
+
         return isFlourish ? ShootResult.Flourish : ShootResult.Normal;
     }
 }

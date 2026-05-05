@@ -1,5 +1,11 @@
 {
   "JHIN-WHISPER.title": "低语",
   "JHIN-WHISPER.description": "在每场战斗开始时，获得 4 层[gold]子弹[/gold]。当[gold]华彩[/gold]触发时，本次攻击伤害提高 {flourishMultiplierPercent}%。若目标生命值低于 {lowHpThresholdPercent}%，额外造成 {lowHpBonusDamage} 点伤害。",
-  "JHIN-WHISPER.flavor": "每一次扣动扳机，都是对完美的追求。"
+  "JHIN-WHISPER.flavor": "每一次扣动扳机，都是对完美的追求。",
+  "JHIN-JHIN_MASK.title": "烬的面具",
+  "JHIN-JHIN_MASK.description": "在每场战斗开始时，给予所有敌人 {markAmount} 层[gold]标记[/gold]。",
+  "JHIN-JHIN_MASK.flavor": "面具之下，不是隐藏，而是登场。",
+  "JHIN-EMPTY_SHELL.title": "空弹壳",
+  "JHIN-EMPTY_SHELL.description": "每当你的[gold]子弹[/gold]真实变为 0 时，获得 {blockAmount} 点格挡。",
+  "JHIN-EMPTY_SHELL.flavor": "最后一发离膛后，舞步才真正开始。"
 }

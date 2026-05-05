@@ -1,5 +1,11 @@
 {
   "JHIN-WHISPER.title": "Whisper",
   "JHIN-WHISPER.description": "At the start of each combat, gain 4 [gold]Bullets[/gold]. When [gold]Flourish[/gold] triggers, increase this attack's damage by {flourishMultiplierPercent}%. If the target's HP is below {lowHpThresholdPercent}%, deal {lowHpBonusDamage} additional damage.",
-  "JHIN-WHISPER.flavor": "Every pull of the trigger is a pursuit of perfection."
+  "JHIN-WHISPER.flavor": "Every pull of the trigger is a pursuit of perfection.",
+  "JHIN-JHIN_MASK.title": "Jhin's Mask",
+  "JHIN-JHIN_MASK.description": "At the start of each combat, apply {markAmount} [gold]Mark[/gold] to all enemies.",
+  "JHIN-JHIN_MASK.flavor": "Behind the mask is not concealment, but an entrance.",
+  "JHIN-EMPTY_SHELL.title": "Empty Shell",
+  "JHIN-EMPTY_SHELL.description": "Whenever your [gold]Bullets[/gold] truly become 0, gain {blockAmount} Block.",
+  "JHIN-EMPTY_SHELL.flavor": "Only after the last shot leaves the chamber does the dance begin."
 }

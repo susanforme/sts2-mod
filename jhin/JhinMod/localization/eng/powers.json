@@ -8,5 +8,7 @@
   "JHIN-FLOURISH_TEMPO_POWER.title": "Flourish Tempo",
   "JHIN-FLOURISH_TEMPO_POWER.description": "Whenever you trigger [gold]Flourish[/gold], gain 1 Energy.",
   "JHIN-FLOURISH_TEMPO_POWER_PLUS.title": "Flourish Tempo",
-  "JHIN-FLOURISH_TEMPO_POWER_PLUS.description": "Whenever you trigger [gold]Flourish[/gold], gain 1 Energy and draw 1 card."
+  "JHIN-FLOURISH_TEMPO_POWER_PLUS.description": "Whenever you trigger [gold]Flourish[/gold], gain 1 Energy and draw 1 card.",
+  "JHIN-FORCED_FLOURISH_POWER.title": "Flourish Potion",
+  "JHIN-FORCED_FLOURISH_POWER.description": "This turn, your next [gold]Shoot[/gold] card triggers [gold]Flourish[/gold]."
 }

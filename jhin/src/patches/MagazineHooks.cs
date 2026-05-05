@@ -48,6 +48,7 @@ public static class PlayerAfterCombatEndPatch
         JhinMagazineStateRegistry.Clear(__instance);
         FlourishContext.End();
         FlourishEventBus.ClearListeners();
+        BulletEmptyEventBus.ClearListeners();
         LotusTrapPower.ClearPendingWeak();
     }
 }
@@ -77,6 +78,11 @@ public static class ShootCardCanPlayReasonPatch
 
     public static void Postfix(CardModel __instance, ref bool __result, ref UnplayableReason reason, ref AbstractModel preventer)
     {
+        if (!__instance.IsMutable)
+        {
+            return;
+        }
+
         if (!__result && reason == UnplayableReason.EnergyCostTooHigh && JhinMagazineStateRegistry.IsJhin(__instance.Owner))
         {
             preventer = __instance;
@@ -113,7 +119,7 @@ public static class ShootCardUnplayableDialoguePatch
 
     public static void Postfix(UnplayableReason reason, AbstractModel preventer, ref LocString __result)
     {
-        if (preventer is not CardModel card || !JhinMagazineStateRegistry.IsJhin(card.Owner))
+        if (preventer is not CardModel card || !card.IsMutable || !JhinMagazineStateRegistry.IsJhin(card.Owner))
         {
             return;
         }
@@ -148,6 +154,11 @@ public static class JhinCardDisabledPromptPatch
 
     private static LocString? GetDisabledPrompt(CardModel card)
     {
+        if (!card.IsMutable)
+        {
+            return null;
+        }
+
         if (!JhinMagazineStateRegistry.IsJhin(card.Owner))
         {
             return null;
@@ -226,6 +237,12 @@ public static class JhinCannotPlayFtuePatch
 
         public static void Prefix(CardModel card)
         {
+            if (!card.IsMutable)
+            {
+                _currentFtueCard = null;
+                return;
+            }
+
             if (!JhinMagazineStateRegistry.IsJhin(card.Owner))
             {
                 _currentFtueCard = null;

@@ -23,11 +23,11 @@ public class Whisper : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    public override string PackedIconPath => Placeholders.Role;
+    public override string PackedIconPath => "last_whisper.png".ImagePath();
 
-    protected override string PackedIconOutlinePath => Placeholders.Role;
+    protected override string PackedIconOutlinePath => "last_whisper.png".ImagePath();
 
-    protected override string BigIconPath => Placeholders.Role;
+    protected override string BigIconPath => "last_whisper.png".ImagePath();
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -58,7 +58,7 @@ public class Whisper : CustomRelicModel
     /// <summary>
     /// Multiply flourish attack damage by 1.5.
     /// Applies both during real play (FlourishContext.IsActive) and during drag preview
-    /// (card is a shoot card and magazine has exactly 1 bullet remaining).
+    /// (card is a shoot card and the next shot would flourish).
     /// </summary>
     public override decimal ModifyDamageMultiplicative(
         Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
@@ -102,11 +102,11 @@ public class Whisper : CustomRelicModel
             return true;
         }
 
-        // Preview: card is a shoot card and magazine has exactly 1 bullet remaining
+        // Preview: card is a shoot card and the next shot would flourish
         if (cardSource is Cards.AbstractShootCard && cardSource.Owner == Owner)
         {
             JhinMagazineState? state = JhinMagazineStateRegistry.TryGet(Owner);
-            if (state is not null && state.Bullets == 1)
+            if (state is not null && state.WouldFlourishOnNextShot())
             {
                 return true;
             }

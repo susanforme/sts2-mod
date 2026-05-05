@@ -51,12 +51,22 @@ public static class JhinCombatActionUtil
 
     public static bool IsFlourishBullet(Player? player)
     {
-        return (JhinMagazineStateRegistry.TryGet(player)?.Bullets ?? 0) == 1;
+        return JhinMagazineStateRegistry.TryGet(player)?.WouldFlourishOnNextShot() ?? false;
     }
 
     public static void DisableFlourishThisTurn(Player? player)
     {
         JhinMagazineStateRegistry.TryGet(player)?.DisableFlourishThisTurn();
+    }
+
+    public static bool HasForcedFlourish(Player? player)
+    {
+        return JhinMagazineStateRegistry.TryGet(player)?.HasForcedFlourish ?? false;
+    }
+
+    public static void ForceNextShotFlourish(Player? player)
+    {
+        JhinMagazineStateRegistry.TryGet(player)?.ForceNextShotFlourish();
     }
 
     public static void ApplyOrStackVulnerable(Creature? target, int amount)

@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Models.RelicPools;
 using jhin.CardPools;
 using jhin.Cards;
 using jhin.Extensions;
+using jhin.PotionPools;
+using jhin.RelicPools;
 using jhin.Relics;
 
 namespace jhin.Characters;
@@ -43,8 +45,8 @@ public class JhinCharacter : PlaceholderCharacterModel
         new List<RelicModel> { ModelDb.Relic<Whisper>() }.AsReadOnly();
 
     public override CardPoolModel CardPool => ModelDb.CardPool<JhinCardPool>();
-    public override RelicPoolModel RelicPool => ModelDb.RelicPool<SharedRelicPool>();
-    public override PotionPoolModel PotionPool => ModelDb.PotionPool<SharedPotionPool>();
+    public override RelicPoolModel RelicPool => ModelDb.RelicPool<JhinRelicPool>();
+    public override PotionPoolModel PotionPool => ModelDb.PotionPool<JhinPotionPool>();
 
     public override string CustomVisualPath => "res://scenes/creature_visuals/necrobinder.tscn";
     public override string CustomIconTexturePath => Placeholders.Role;

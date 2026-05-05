@@ -8,5 +8,7 @@
   "JHIN-FLOURISH_TEMPO_POWER.title": "华彩节奏",
   "JHIN-FLOURISH_TEMPO_POWER.description": "每当你触发[gold]华彩[/gold]，获得 1 点能量。",
   "JHIN-FLOURISH_TEMPO_POWER_PLUS.title": "华彩节奏",
-  "JHIN-FLOURISH_TEMPO_POWER_PLUS.description": "每当你触发[gold]华彩[/gold]，获得 1 点能量并抽 1 张牌。"
+  "JHIN-FLOURISH_TEMPO_POWER_PLUS.description": "每当你触发[gold]华彩[/gold]，获得 1 点能量并抽 1 张牌。",
+  "JHIN-FORCED_FLOURISH_POWER.title": "华彩药剂",
+  "JHIN-FORCED_FLOURISH_POWER.description": "本回合下一张[gold]射击[/gold]牌必定触发[gold]华彩[/gold]。"
 }

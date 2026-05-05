@@ -18,13 +18,23 @@ public static class RelicDescriptionVariablesPatch
 
     public static void Postfix(RelicModel __instance, ref LocString __result)
     {
-        if (__instance is not Whisper)
+        if (__instance is Whisper)
         {
+            __result.Add("flourishMultiplierPercent", ConstantUtil.WhisperFlourishBonusPercent);
+            __result.Add("lowHpThresholdPercent", ConstantUtil.LowHpThresholdPercent);
+            __result.Add("lowHpBonusDamage", ConstantUtil.WhisperLowHpBonusDamage);
             return;
         }
 
-        __result.Add("flourishMultiplierPercent", ConstantUtil.WhisperFlourishBonusPercent);
-        __result.Add("lowHpThresholdPercent", ConstantUtil.LowHpThresholdPercent);
-        __result.Add("lowHpBonusDamage", ConstantUtil.WhisperLowHpBonusDamage);
+        if (__instance is JhinMask)
+        {
+            __result.Add("markAmount", 1);
+            return;
+        }
+
+        if (__instance is EmptyShell)
+        {
+            __result.Add("blockAmount", 5);
+        }
     }
 }

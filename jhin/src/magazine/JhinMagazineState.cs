@@ -8,6 +8,7 @@ namespace jhin.Magazine;
 public sealed class JhinMagazineState
 {
     private bool _flourishDisabledThisTurn;
+    private bool _forceNextShotFlourish;
 
     public int Bullets { get; private set; }
     public int MaxBullets { get; private set; }
@@ -15,6 +16,7 @@ public sealed class JhinMagazineState
     public int FlourishCountThisCombat { get; private set; }
     public bool UsedShootThisTurn { get; private set; }
     public BulletPower? AppliedPower { get; private set; }
+    public bool HasForcedFlourish => _forceNextShotFlourish;
 
     public void InitializeCombat()
     {
@@ -24,6 +26,7 @@ public sealed class JhinMagazineState
         FlourishCountThisCombat = 0;
         UsedShootThisTurn = false;
         _flourishDisabledThisTurn = false;
+        _forceNextShotFlourish = false;
         SyncPower();
     }
 
@@ -54,6 +57,11 @@ public sealed class JhinMagazineState
         return Bullets > 0;
     }
 
+    public bool WouldFlourishOnNextShot()
+    {
+        return Bullets > 0 && !_flourishDisabledThisTurn && (Bullets == 1 || _forceNextShotFlourish);
+    }
+
     public bool TryConsumeBullet()
     {
         if (Bullets <= 0)
@@ -78,17 +86,21 @@ public sealed class JhinMagazineState
         }
 
         bool wasLastBullet = Bullets == 1;
+        bool forcedFlourish = _forceNextShotFlourish && !_flourishDisabledThisTurn;
         Bullets--;
         UsedShootThisTurn = true;
+        _forceNextShotFlourish = false;
 
-        if (wasLastBullet && !_flourishDisabledThisTurn)
+        bool didFlourish = (wasLastBullet || forcedFlourish) && !_flourishDisabledThisTurn;
+
+        if (didFlourish)
         {
             FlourishCountThisTurn++;
             FlourishCountThisCombat++;
         }
 
         SyncPower();
-        return wasLastBullet && !_flourishDisabledThisTurn;
+        return didFlourish;
     }
 
     public void ReloadToFull()
@@ -100,6 +112,12 @@ public sealed class JhinMagazineState
     public void DisableFlourishThisTurn()
     {
         _flourishDisabledThisTurn = true;
+        _forceNextShotFlourish = false;
+    }
+
+    public void ForceNextShotFlourish()
+    {
+        _forceNextShotFlourish = true;
     }
 
     public void AttachPower(BulletPower power)
