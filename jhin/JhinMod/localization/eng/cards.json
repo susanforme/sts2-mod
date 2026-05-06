@@ -128,7 +128,7 @@
   "JHIN-SHOW_PAUSE.title": "Show Pause",
   "JHIN-SHOW_PAUSE.description": "Apply -2-+3+ [gold]Weak[/gold] to all enemies.\n[gold]Exhaust.[/gold]",
   "JHIN-POSITION_SWAP.title": "Position Swap",
-  "JHIN-POSITION_SWAP.description": "Draw -2-+3+ cards.\nGain 1 Energy.\n[gold]Exhaust.[/gold]",
+  "JHIN-POSITION_SWAP.description": "Draw -1-+2+ cards.\nGain 1 Energy.\n[gold]Exhaust.[/gold]",
   "JHIN-DEATH_IS_ART.title": "Death is Art",
   "JHIN-DEATH_IS_ART.description": "When an enemy first drops below 50% HP, gain -1-+2+ Strength (once per enemy).",
   "JHIN-LOTUS_WORKSHOP.title": "Lotus Workshop",

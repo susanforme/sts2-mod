@@ -20,10 +20,12 @@ public class PositionSwap() : AbstractJhinCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int drawAmount = IsUpgraded ? 3 : 2;
+        int drawAmount = IsUpgraded ? 2 : 1;
         await JhinCombatActionUtil.Draw(choiceContext, Owner, drawAmount);
         _ = MegaCrit.Sts2.Core.Commands.PlayerCmd.GainEnergy(1m, Owner);
     }
+
+    protected override PileType GetResultPileType() => PileType.Exhaust;
 
     protected override void OnUpgrade()
     {

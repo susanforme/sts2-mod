@@ -128,7 +128,7 @@
   "JHIN-SHOW_PAUSE.title": "演出暂停",
   "JHIN-SHOW_PAUSE.description": "给予所有敌人 -2-+3+ 层[gold]虚弱[/gold]。\n[gold]消耗。[/gold]",
   "JHIN-POSITION_SWAP.title": "换位演出",
-  "JHIN-POSITION_SWAP.description": "抽 -2-+3+ 张牌。\n获得 1 点能量。\n[gold]消耗。[/gold]",
+  "JHIN-POSITION_SWAP.description": "抽 -1-+2+ 张牌。\n获得 1 点能量。\n[gold]消耗。[/gold]",
   "JHIN-DEATH_IS_ART.title": "死亡是艺术",
   "JHIN-DEATH_IS_ART.description": "当敌人首次生命降到 50% 以下时，获得 -1-+2+ 点力量（每个敌人一次）。",
   "JHIN-LOTUS_WORKSHOP.title": "莲花工坊",

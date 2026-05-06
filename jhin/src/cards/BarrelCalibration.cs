@@ -42,6 +42,8 @@ public class BarrelCalibration() : AbstractJhinCard(
         await Task.CompletedTask;
     }
 
+    protected override PileType GetResultPileType() => PileType.Exhaust;
+
     protected override void OnUpgrade()
     {
     }

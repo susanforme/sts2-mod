@@ -36,6 +36,8 @@ public class LastAudience() : AbstractShootCard(
         EndFlourishContext();
     }
 
+    protected override PileType GetResultPileType() => PileType.Exhaust;
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(8m);
