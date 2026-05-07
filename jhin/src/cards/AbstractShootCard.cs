@@ -17,6 +17,7 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
     : AbstractJhinCard(cost, CardType.Attack, rarity, target)
 {
     private bool _didShootThisPlay;
+    private bool _suppressUnifiedDamageModifier;
 
     public virtual bool IsShootCard => true;
 
@@ -147,7 +148,7 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (target is null || dealer != Owner?.Creature || cardSource != this)
+        if (_suppressUnifiedDamageModifier || target is null || dealer != Owner?.Creature || cardSource != this)
         {
             return 0m;
         }
@@ -164,13 +165,15 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
         int markAmount = ShootAction.GetMarkAmount(target);
         ShootDamageCalculationResult damageResult = CalculateShootDamage(target, IsFlourishShot);
 
-        await MegaCrit.Sts2.Core.Commands.CreatureCmd.Damage(
-            choiceContext,
-            target,
-            damageResult.TotalDamage,
-            ValueProp.Move,
-            Owner.Creature,
-            null);
+        _suppressUnifiedDamageModifier = true;
+        try
+        {
+            await CommonActions.CardAttack(this, target, damageResult.TotalDamage, 1, null, null, null).Execute(choiceContext);
+        }
+        finally
+        {
+            _suppressUnifiedDamageModifier = false;
+        }
 
         if (markAmount > 0 && ShouldConsumeMarksAfterAttack())
         {
@@ -188,13 +191,15 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
             return;
         }
 
-        await MegaCrit.Sts2.Core.Commands.CreatureCmd.Damage(
-            choiceContext,
-            target,
-            damage,
-            ValueProp.Move,
-            Owner.Creature,
-            null);
+        _suppressUnifiedDamageModifier = true;
+        try
+        {
+            await CommonActions.CardAttack(this, target, damage, 1, null, null, null).Execute(choiceContext);
+        }
+        finally
+        {
+            _suppressUnifiedDamageModifier = false;
+        }
     }
 
     private void ConsumeOneTimeShootBonuses()
