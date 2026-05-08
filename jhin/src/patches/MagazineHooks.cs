@@ -88,26 +88,10 @@ public static class PlayerCombatStateResetEnergyPatch
 
         PlayerChoiceContext choiceContext = new BlockingPlayerChoiceContext();
 
-        ActorsInstinctPower? instinctPower = player.Creature.GetPower<ActorsInstinctPower>();
-        instinctPower?.OnTurnStart();
-
-        AestheticOfFourPower? fourPower = player.Creature.GetPower<AestheticOfFourPower>();
-        fourPower?.OnTurnStart(choiceContext, player);
-
-        CarefulArrangementPower? arrangePower = player.Creature.GetPower<CarefulArrangementPower>();
-        arrangePower?.OnTurnStart(choiceContext, player);
-
-        FinalActForeshadowingPower? foreshadowPower = player.Creature.GetPower<FinalActForeshadowingPower>();
-        foreshadowPower?.OnTurnStart(player);
-
-        FatemakerPower? fatemakerPower = player.Creature.GetPower<FatemakerPower>();
-        fatemakerPower?.OnTurnStart(player);
-
-        PerfectCrimePower? perfectCrimePower = player.Creature.GetPower<PerfectCrimePower>();
-        perfectCrimePower?.OnTurnStart();
-
-        FinalActArtPower? finalActArtPower = player.Creature.GetPower<FinalActArtPower>();
-        finalActArtPower?.OnTurnStart(player);
+        foreach (IJhinTurnStartPower turnStartPower in player.Creature.Powers.OfType<IJhinTurnStartPower>())
+        {
+            turnStartPower.OnTurnStart(choiceContext, player);
+        }
     }
 }
 

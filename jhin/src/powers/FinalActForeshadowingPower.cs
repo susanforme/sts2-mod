@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace jhin.Powers;
 
-public class FinalActForeshadowingPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class FinalActForeshadowingPower : CustomPowerModel, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -20,7 +20,7 @@ public class FinalActForeshadowingPower : CustomPowerModel, IAddDumbVariablesToP
         description.Add("energyAmount", Amount > 1 ? 2 : 1);
     }
 
-    public void OnTurnStart(Player player)
+    public void OnTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         Flash();
         int energyAmount = Amount > 1 ? 2 : 1;

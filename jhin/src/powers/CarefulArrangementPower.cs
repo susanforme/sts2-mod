@@ -11,7 +11,7 @@ using jhin.Actions;
 
 namespace jhin.Powers;
 
-public class CarefulArrangementPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class CarefulArrangementPower : CustomPowerModel, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

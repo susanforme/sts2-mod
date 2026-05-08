@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization;
 
 namespace jhin.Powers;
 
-public class FinalActArtPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class FinalActArtPower : CustomPowerModel, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -21,7 +21,7 @@ public class FinalActArtPower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         description.Add("energyAmount", Amount > 1 ? 3 : 2);
     }
 
-    public void OnTurnStart(Player player)
+    public void OnTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature?.CombatState is null)
         {
