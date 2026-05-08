@@ -17,7 +17,7 @@ namespace jhin.Powers;
 /// 血色舞台 / Bloody Stage — When enemy first drops below 50%: apply 2 Mark. Upgrade: 3 Mark.
 /// Implemented via AfterCardPlayed: after any attack card, check all enemies for HP threshold.
 /// </summary>
-public class BloodyStageP : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class BloodyStagePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

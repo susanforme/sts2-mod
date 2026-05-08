@@ -29,7 +29,7 @@ public class BloodyStage() : AbstractJhinCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<BloodyStageP>(choiceContext, this, IsUpgraded ? 2 : 1);
+        await CommonActions.ApplySelf<BloodyStagePower>(choiceContext, this, IsUpgraded ? 2 : 1);
     }
 
     protected override void OnUpgrade()
