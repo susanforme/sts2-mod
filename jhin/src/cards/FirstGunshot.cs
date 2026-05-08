@@ -17,7 +17,7 @@ namespace jhin.Cards;
 [Pool(typeof(JhinCardPool))]
 public class FirstGunshot() : AbstractShootCard(
     cost: 1,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
@@ -61,7 +61,7 @@ public class FirstGunshot() : AbstractShootCard(
         EndFlourishContext();
     }
 
-    protected override PileType GetResultPileType() => IsUpgraded ? base.GetResultPileType() : PileType.Exhaust;
+    protected override PileType GetResultPileType() => IsUpgraded ? PileType.Discard : PileType.Exhaust;
 
     protected override void OnUpgrade()
     {

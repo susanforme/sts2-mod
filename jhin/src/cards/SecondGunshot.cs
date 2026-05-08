@@ -17,7 +17,7 @@ namespace jhin.Cards;
 [Pool(typeof(JhinCardPool))]
 public class SecondGunshot() : AbstractShootCard(
     cost: 1,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
