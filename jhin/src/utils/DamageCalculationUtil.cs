@@ -31,28 +31,8 @@ public readonly record struct ShootCardDamageInput(
 public static class DamageCalculationUtil
 {
     /// <summary>
-    /// Returns the Whisper flourish multiplier for the current damage context.
-    /// </summary>
-    public static decimal GetWhisperFlourishMultiplier(bool hasWhisper, bool isFlourish)
-    {
-        return hasWhisper && isFlourish
-            ? ConstantUtil.WhisperFlourishMultiplier
-            : 1m;
-    }
-
-    /// <summary>
-    /// Returns the Whisper low-HP flat damage bonus for the current damage context.
-    /// </summary>
-    public static int GetWhisperLowHpBonusDamage(bool hasWhisper, bool isFlourish, bool isLowHp)
-    {
-        return hasWhisper && isFlourish && isLowHp
-            ? ConstantUtil.WhisperLowHpBonusDamage
-            : 0;
-    }
-
-    /// <summary>
-    /// Calculates final shoot damage from base damage, mark stacks, and Whisper-related modifiers.
-    /// </summary>
+     /// Calculates final shoot damage from base damage, mark stacks, and Whisper-related modifiers.
+     /// </summary>
     public static ShootDamageCalculationResult CalculateShootDamage(ShootCardDamageInput input)
     {
         int markBonusDamage = input.MarkStacks * input.BaseMarkDamagePerStack;
@@ -144,23 +124,4 @@ public static class DamageCalculationUtil
         return hpRatio < ConstantUtil.LowHpThreshold;
     }
 
-    /// <summary>
-    /// Returns the Last Whisper flourish multiplier for the current damage context.
-    /// </summary>
-    public static decimal GetLastWhisperFlourishMultiplier(bool hasLastWhisper, bool isFlourish)
-    {
-        return hasLastWhisper && isFlourish
-            ? ConstantUtil.LastWhisperFlourishMultiplier
-            : 1m;
-    }
-
-    /// <summary>
-    /// Returns the Last Whisper low-HP flat damage bonus for the current damage context.
-    /// </summary>
-    public static int GetLastWhisperLowHpBonusDamage(bool hasLastWhisper, bool isFlourish, bool isLowHp)
-    {
-        return hasLastWhisper && isFlourish && isLowHp
-            ? ConstantUtil.LastWhisperLowHpBonusDamage
-            : 0;
-    }
 }
