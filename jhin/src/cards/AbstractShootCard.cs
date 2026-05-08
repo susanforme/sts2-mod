@@ -148,20 +148,29 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
         PlayerChoiceContext choiceContext,
         Creature target)
     {
-        int markAmount = ShootAction.GetMarkAmount(target);
         ShootDamageCalculationResult damageResult = CalculateShootDamage(target, IsFlourishShot);
+        await PerformResolvedShootAttack(choiceContext, target, damageResult.TotalDamage, ShouldConsumeMarksAfterAttack());
+    }
+
+    protected async Task PerformResolvedShootAttack(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        int resolvedDamage,
+        bool consumeMarksAfterAttack)
+    {
+        int markAmount = ShootAction.GetMarkAmount(target);
 
         _suppressUnifiedDamageModifier = true;
         try
         {
-            await CommonActions.CardAttack(this, target, damageResult.TotalDamage, 1, null, null, null).Execute(choiceContext);
+            await CommonActions.CardAttack(this, target, resolvedDamage, 1, null, null, null).Execute(choiceContext);
         }
         finally
         {
             _suppressUnifiedDamageModifier = false;
         }
 
-        if (markAmount > 0 && ShouldConsumeMarksAfterAttack())
+        if (markAmount > 0 && consumeMarksAfterAttack)
         {
             ShootAction.ConsumeMarks(choiceContext, target, Owner);
         }

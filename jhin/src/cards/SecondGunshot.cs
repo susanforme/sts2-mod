@@ -1,3 +1,5 @@
+#nullable enable
+
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,17 +15,12 @@ using jhin.Magazine;
 namespace jhin.Cards;
 
 [Pool(typeof(JhinCardPool))]
-public class ThirdGunshot() : AbstractShootCard(
+public class SecondGunshot() : AbstractShootCard(
     cost: 1,
     rarity: CardRarity.Rare,
     target: TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move)];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
-    ];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
 
     protected override bool IsPlayable
     {
@@ -35,9 +32,15 @@ public class ThirdGunshot() : AbstractShootCard(
             }
 
             JhinMagazineState? state = JhinMagazineStateRegistry.TryGet(Owner);
-            return state is not null && state.Bullets == 2;
+            return state is not null && state.Bullets == 3;
         }
     }
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
+        HoverTipFactory.FromKeyword(JhinKeywords.Mark),
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -46,13 +49,26 @@ public class ThirdGunshot() : AbstractShootCard(
             return;
         }
 
+        if (cardPlay.Target is null)
+        {
+            EndFlourishContext();
+            return;
+        }
+
+        bool hadMark = ShootAction.GetMarkAmount(cardPlay.Target) > 0;
+
         await PerformShootAttack(choiceContext, cardPlay.Target);
+
+        if (cardPlay.Target.IsAlive && hadMark)
+        {
+            await DealRawBonusDamage(choiceContext, cardPlay.Target, IsUpgraded ? 7 : 4);
+        }
 
         EndFlourishContext();
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

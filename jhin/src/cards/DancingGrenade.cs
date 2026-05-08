@@ -9,48 +9,68 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
+using jhin.Actions;
 using jhin.CardPools;
 
 namespace jhin.Cards;
 
 [Pool(typeof(JhinCardPool))]
 public class DancingGrenade() : AbstractJhinCard(
-    cost: 1,
+    cost: 2,
     type: CardType.Attack,
-    rarity: CardRarity.Common,
-    target: TargetType.AnyEnemy)
+    rarity: CardRarity.Rare,
+    target: TargetType.RandomEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
+    private const int MaxHitCount = 4;
+    private const int KillBonusDamage = 6;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target is null || Owner.Creature?.CombatState is null)
+        if (Owner.Creature?.CombatState is null || Owner.PlayerRng is null)
         {
             return;
         }
 
-        IEnumerable<DamageResult> results = await CreatureCmd.Damage(choiceContext, cardPlay.Target, DynamicVars.Damage.IntValue, ValueProp.Move, Owner.Creature, this);
-        DamageResult? primaryResult = results.FirstOrDefault(result => result.Receiver == cardPlay.Target);
-        if (primaryResult is null || !primaryResult.WasTargetKilled)
+        int bounceBonusDamage = 0;
+        Creature? currentTarget = JhinCombatActionUtil.GetRandomLivingEnemy(Owner);
+        if (currentTarget is null)
         {
             return;
         }
 
-        List<Creature> livingOtherEnemies = Owner.Creature.CombatState.HittableEnemies
-            .Where(enemy => enemy.IsAlive && enemy != cardPlay.Target)
-            .ToList();
-
-        Creature? bounceTarget = Owner.PlayerRng.Transformations.NextItem(livingOtherEnemies);
-        if (bounceTarget is null)
+        for (int hitIndex = 0; hitIndex < MaxHitCount && currentTarget is not null; hitIndex++)
         {
-            return;
-        }
+            int damage = DynamicVars.Damage.IntValue + (hitIndex * GetBounceStepDamage()) + bounceBonusDamage;
+            IEnumerable<DamageResult> results = await CreatureCmd.Damage(choiceContext, currentTarget, damage, ValueProp.Move, Owner.Creature, this);
+            DamageResult? result = results.FirstOrDefault(entry => entry.Receiver == currentTarget);
 
-        await CreatureCmd.Damage(choiceContext, bounceTarget, DynamicVars.Damage.IntValue + (IsUpgraded ? 4 : 3), ValueProp.Move, Owner.Creature, this);
+            bounceBonusDamage = result?.WasTargetKilled == true ? bounceBonusDamage + KillBonusDamage : 0;
+            currentTarget = GetNextBounceTarget(currentTarget);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
+    }
+
+    private int GetBounceStepDamage() => IsUpgraded ? 5 : 3;
+
+    private Creature? GetNextBounceTarget(Creature currentTarget)
+    {
+        if (Owner.Creature?.CombatState is null || Owner.PlayerRng is null)
+        {
+            return null;
+        }
+
+        List<Creature> livingOtherEnemies = Owner.Creature.CombatState.HittableEnemies
+            .Where(enemy => enemy.IsAlive && enemy != currentTarget)
+            .ToList();
+
+        return livingOtherEnemies.Count == 0
+            ? null
+            : Owner.PlayerRng.Transformations.NextItem(livingOtherEnemies);
     }
 }

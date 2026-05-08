@@ -1,14 +1,11 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using jhin.CardPools;
 using jhin.Actions;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace jhin.Cards;
 
@@ -30,13 +27,7 @@ public class Reload() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ReloadAction.Execute(choiceContext, Owner);
-        JhinCombatActionUtil.DisableFlourishThisTurn(Owner);
-        await JhinCombatActionUtil.Draw(choiceContext, Owner, IsUpgraded ? 2 : 1);
-    }
-
-    protected override PileType GetResultPileType()
-    {
-        return PileType.Exhaust;
+        await Task.CompletedTask;
     }
 
     protected override void OnUpgrade()

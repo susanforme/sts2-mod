@@ -9,23 +9,37 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.Actions;
 using jhin.CardPools;
+using jhin.CurtainCall;
+using jhin.Magazine;
+using jhin.Utils;
 
 namespace jhin.Cards;
 
 [Pool(typeof(JhinCardPool))]
 public class FourthAct() : AbstractShootCard(
     cost: 2,
-    rarity: CardRarity.Uncommon,
+    rarity: CardRarity.Rare,
     target: TargetType.AnyEnemy)
 {
-    protected override bool IsPlayable => base.IsPlayable && JhinCombatActionUtil.IsFlourishBullet(Owner);
+    protected override bool IsPlayable
+    {
+        get
+        {
+            if (!base.IsPlayable)
+            {
+                return false;
+            }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(24, ValueProp.Move)];
+            JhinMagazineState? state = JhinMagazineStateRegistry.TryGet(Owner);
+            return state is not null && state.Bullets == 1;
+        }
+    }
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(16, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(JhinKeywords.Bullet),
-        HoverTipFactory.FromKeyword(JhinKeywords.Flourish),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,18 +49,23 @@ public class FourthAct() : AbstractShootCard(
             return;
         }
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-
-        if (IsFlourishShot)
+        if (cardPlay.Target is null)
         {
-            await JhinCombatActionUtil.ApplyOrStackVulnerable(cardPlay.Target, IsUpgraded ? 4 : 3);
+            EndFlourishContext();
+            return;
         }
+
+        ShootDamageCalculationResult damageResult = CalculateShootDamage(cardPlay.Target, IsFlourishShot);
+        int scaledDamage = CurtainCallDamageUtil.CalculateDiscreteMissingHpDamage(damageResult.TotalDamage, cardPlay.Target);
+        await PerformResolvedShootAttack(choiceContext, cardPlay.Target, scaledDamage, ShouldConsumeMarksAfterAttack());
 
         EndFlourishContext();
     }
 
+    protected override PileType GetResultPileType() => PileType.Exhaust;
+
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6m);
+        DynamicVars.Damage.UpgradeValueBy(8m);
     }
 }

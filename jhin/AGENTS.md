@@ -4,6 +4,16 @@
 
 不允许使用任何subagent，所有功能必须由主agent完成。
 
+## 开发准则
+
+方法必须基于优先Baselib公开的API接口进行调用，其次使用游戏的公开方法.禁止使用游戏的私有函数方法。
+
+同时尽量使用项目已有公共函数，避免重复造轮子。
+
+```
+https://alchyr.github.io/BaseLib-Wiki/docs/Features.html
+```
+
 ## 🎯 资源使用规范（强制）
 
 ### 1. 卡牌资源（Card Images）
@@ -76,14 +86,6 @@ C:\Users\<YourUsername>\AppData\Roaming\SlayTheSpire2\logs
 YourUsername 需要替换为实际的Windows用户名
 。
 
-
-## 文档
-
-baselib
-
-```
-https://alchyr.github.io/BaseLib-Wiki/docs/Features.html
-```
 
 ## 碰到复杂问题怎么办
 

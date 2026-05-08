@@ -8,7 +8,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
+using jhin.Actions;
 using jhin.CardPools;
+using jhin.Magazine;
 
 namespace jhin.Cards;
 
@@ -18,7 +20,9 @@ public class WhisperVolley() : AbstractShootCard(
     rarity: CardRarity.Uncommon,
     target: TargetType.AllEnemies)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
+    private const int ShotCount = 2;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -26,33 +30,46 @@ public class WhisperVolley() : AbstractShootCard(
         HoverTipFactory.FromKeyword(JhinKeywords.Flourish),
     ];
 
+    protected override bool IsPlayable
+    {
+        get
+        {
+            if (!base.IsPlayable)
+            {
+                return false;
+            }
+
+            JhinMagazineState? state = JhinMagazineStateRegistry.TryGet(Owner);
+            return state is not null && state.Bullets >= ShotCount;
+        }
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext) || Owner.Creature?.CombatState is null)
+        if (Owner.Creature?.CombatState is null)
         {
             return;
         }
 
-        List<Creature> enemies = Owner.Creature.CombatState.HittableEnemies.Where(e => e.IsAlive).ToList();
-        foreach (Creature enemy in enemies)
+        for (int shotIndex = 0; shotIndex < ShotCount; shotIndex++)
         {
-            await PerformShootAttack(choiceContext, enemy);
-        }
-
-        if (IsFlourishShot)
-        {
-            int bonusDmg = IsUpgraded ? 4 : 3;
-            foreach (Creature enemy in enemies.Where(e => e.IsAlive))
+            if (!TryShoot(choiceContext))
             {
-                await DealRawBonusDamage(choiceContext, enemy, bonusDmg);
+                return;
             }
-        }
 
-        EndFlourishContext();
+            List<Creature> enemies = Owner.Creature.CombatState.HittableEnemies.Where(enemy => enemy.IsAlive).ToList();
+            foreach (Creature enemy in enemies)
+            {
+                await PerformShootAttack(choiceContext, enemy);
+            }
+
+            EndFlourishContext();
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }
