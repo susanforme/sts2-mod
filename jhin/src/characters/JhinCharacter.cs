@@ -17,6 +17,7 @@ namespace jhin.Characters;
 public class JhinCharacter : PlaceholderCharacterModel
 {
     public const string CharacterId = "JHIN";
+    private const string PortraitIconPath = "res://JhinMod/Images/Character/CharacterPortraits.png";
 
     public static readonly Color Color = new("b8860b");
 
@@ -51,8 +52,8 @@ public class JhinCharacter : PlaceholderCharacterModel
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<JhinPotionPool>();
 
     public override string CustomVisualPath => "res://scenes/creature_visuals/necrobinder.tscn";
-    public override string CustomIconTexturePath => Placeholders.Role;
-    public override string CustomCharacterSelectIconPath => Placeholders.Role;
-    public override string CustomCharacterSelectLockedIconPath => Placeholders.Role;
-    public override string CustomMapMarkerPath => Placeholders.Role;
+    public override string CustomIconTexturePath => PortraitIconPath;
+    public override string CustomCharacterSelectIconPath => PortraitIconPath;
+    public override string CustomCharacterSelectLockedIconPath => PortraitIconPath;
+    public override string CustomMapMarkerPath => PortraitIconPath;
 }
