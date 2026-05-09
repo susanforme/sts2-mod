@@ -7,11 +7,16 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using jhin.Cards;
+using jhin.Extensions;
 
 namespace jhin.Powers;
 
 public class ForcedFlourishPower : CustomPowerModel
 {
+    public override string CustomPackedIconPath => "Card/JHIN-FORCED_FLOURISH_POWER.png".ImagePath();
+    public override string CustomBigIconPath => "Card/JHIN-FORCED_FLOURISH_POWER.png".ImagePath();
+    public override string CustomBigBetaIconPath => "Card/JHIN-FORCED_FLOURISH_POWER.png".ImagePath();
+
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Single;

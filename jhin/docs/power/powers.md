@@ -4,13 +4,13 @@
 
 | 美术资源 | ID | 中文名 | 英文名 | 类型 | 叠层 | 常见来源 | 文件 | 当前效果摘要 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|  | `JHIN-BULLET_POWER` | 子弹 | Bullets | Buff | `Counter` | 系统：弹匣状态 | `src/powers/BulletPower.cs` | 同步显示当前子弹数，并负责记录部分回合内战斗统计、回合结束处理延后结算的莲花陷阱虚弱等系统逻辑。 |
-|  | `JHIN-MARK_POWER` | 标记 | Mark | Debuff | `Counter` | 系统：施加标记 | `src/powers/MarkPower.cs` | 目标被下一张射击命中时，每层额外造成标记伤害，然后移除全部标记。 |
-|  | `JHIN-LOTUS_TRAP_POWER` | 莲花陷阱 | Lotus Trap | Debuff | `Counter` | 系统：施加莲花陷阱 | `src/powers/LotusTrapPower.cs` | 敌人攻击后按层数受到伤害并获得虚弱；若该伤害击杀目标，则对全体敌人按层数造成爆炸伤害。 |
+| 1 | `JHIN-BULLET_POWER` | 子弹 | Bullets | Buff | `Counter` | 系统：弹匣状态 | `src/powers/BulletPower.cs` | 同步显示当前子弹数，并负责记录部分回合内战斗统计、回合结束处理延后结算的莲花陷阱虚弱等系统逻辑。 |
+| 1 | `JHIN-MARK_POWER` | 标记 | Mark | Debuff | `Counter` | 系统：施加标记 | `src/powers/MarkPower.cs` | 目标被下一张射击命中时，每层额外造成标记伤害，然后移除全部标记。 |
+| 1 | `JHIN-LOTUS_TRAP_POWER` | 莲花陷阱 | Lotus Trap | Debuff | `Counter` | 系统：施加莲花陷阱 | `src/powers/LotusTrapPower.cs` | 敌人攻击后按层数受到伤害并获得虚弱；若该伤害击杀目标，则对全体敌人按层数造成爆炸伤害。 |
 |  | `JHIN-FLOURISH_TEMPO_POWER` | 华彩节奏 | Flourish Tempo | Buff | `Single` | `FlourishTempo` | `src/powers/FlourishTempoPower.cs` | 每次触发华彩获得 1 点能量；升级后额外抽 1 张牌。 |
 |  | `JHIN-FORCED_FLOURISH_POWER` | 华彩药剂 | Flourish Potion | Buff | `Single` | `FinalActReload` / `FlourishPotion` | `src/powers/ForcedFlourishPower.cs` | 本回合下一张射击牌必定触发华彩；该射击打出后移除。 |
 |  | `JHIN-COMPOSED_POWER` | 从容不迫 | Composed | Buff | `Single` | `Composed` | `src/powers/ComposedPower.cs` | 当前代码中，每次触发华彩都会抽 2 张牌。 |
-|  | `JHIN-MUZZLE_RHYTHM_POWER` | 枪口节奏 | Muzzle Rhythm | Buff | `Single` | `MuzzleRhythm` | `src/powers/MuzzleRhythmPower.cs` | 每打出 4 张攻击牌获得 1 点力量；升级后还会获得 1 点敏捷。 |
+| 1 | `JHIN-MUZZLE_RHYTHM_POWER` | 枪口节奏 | Muzzle Rhythm | Buff | `Single` | `MuzzleRhythm` | `src/powers/MuzzleRhythmPower.cs` | 每打出 4 张攻击牌获得 1 点力量；升级后还会获得 1 点敏捷。 |
 |  | `JHIN-AUDIENCE_SEATED_POWER` | 观众入席 | Audience Seated | Buff | `Single` | `AudienceSeated` | `src/powers/AudienceSeatedPower.cs` | 作为持续提示存在；实际给所有敌人施加 1 层标记由卡牌打出时直接完成。 |
 |  | `JHIN-SHOW_PLAN_POWER` | 演出计划 | Show Plan | Buff | `Single` | `ShowPlan` | `src/powers/ShowPlanPower.cs` | 每次装填时获得 3 点格挡；升级后为 5 点。 |
 |  | `JHIN-BLOODY_STAGE_P` | 血色舞台 | Bloody Stage | Buff | `Single` | `BloodyStage` | `src/powers/BloodyStagePower.cs` | 敌人首次生命降到 50% 以下时施加 2 层标记；升级后为 3 层。 |

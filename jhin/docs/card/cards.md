@@ -7,7 +7,7 @@
 | 1 | `JHIN-STRIKE` | 打击 | Strike | 攻击 | `1` | 基础 | 单体敌人 | `src/cards/Strike.cs` | 基础攻击牌，造成单体伤害。 |
 | 1 | `JHIN-DEFEND` | 防御 | Defend | 技能 | `1` | 基础 | 自身 | `src/cards/Defend.cs` | 基础防御牌，获得格挡。 |
 | 1 | `JHIN-COMMON_SHOT` | 普通射击 | Common Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/CommonShot.cs` | 消耗 1 层子弹，造成基础射击伤害。 |
-|  | `JHIN-PERFECT_SHOT` | 精准一枪 | Perfect Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/PerfectShot.cs` | 射击造成更高单体伤害；华彩时回能，升级后还会抽牌。 |
+| 1 | `JHIN-PERFECT_SHOT` | 精准一枪 | Perfect Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/PerfectShot.cs` | 射击造成更高单体伤害；华彩时回能，升级后还会抽牌。 |
 |  | `JHIN-WHISPER_BURST` | 低语点射 | Whisper Burst | 攻击 / 射击 | `0` | 普通 | 单体敌人 | `src/cards/WhisperBurst.cs` | 0 费射击牌，消耗 1 层子弹造成伤害。 |
 |  | `JHIN-GRACEFUL_FOOTWORK` | 优雅走位 | Graceful Footwork | 技能 | `1` | 普通 | 自身 | `src/cards/GracefulFootwork.cs` | 获得格挡；若本回合已使用过射击牌，再获得额外格挡。 |
 |  | `JHIN-AIM_SHOT` | 瞄准射击 | Aim Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/AimShot.cs` | 射击造成伤害，并给予目标标记。 |
@@ -31,7 +31,7 @@
 |  | `JHIN-PERFECT_STANCE` | 完美姿态 | Perfect Stance | 技能 | `1` | 普通 | 自身 | `src/cards/PerfectStance.cs` | 获得格挡；若子弹为 4，则再获得大量格挡。 |
 |  | `JHIN-AWAIT_APPLAUSE` | 等待掌声 | Await Applause | 技能 | `1` | 普通 | 自身 | `src/cards/AwaitApplause.cs` | 获得格挡；下回合开始时获得能量。 |
 |  | `JHIN-COUNT_BEATS` | 数拍 | Count Beats | 技能 | `0` | 普通 | 自身 | `src/cards/CountBeats.cs` | 抽牌；若子弹为 1 再抽 1 张；使用后消耗。 |
-|  | `JHIN-RELOAD` | 装填 | Reload | 技能 | `0` | 普通 | 自身 | `src/cards/Reload.cs` | 仅将当前子弹直接装填至 4。 |
+| 1 | `JHIN-RELOAD` | 装填 | Reload | 技能 | `0` | 普通 | 自身 | `src/cards/Reload.cs` | 仅将当前子弹直接装填至 4。 |
 |  | `JHIN-COMPOSED` | 从容不迫 | Composed | 能力 | `1` | 普通 | 自身 | `src/cards/Composed.cs` | 本场战斗中首次触发华彩时，抽 2 张牌。 |
 |  | `JHIN-MUZZLE_RHYTHM` | 枪口节奏 | Muzzle Rhythm | 能力 | `1` | 普通 | 自身 | `src/cards/MuzzleRhythm.cs` | 每打出 4 张攻击牌，获得力量；升级后还获得敏捷。 |
 |  | `JHIN-AUDIENCE_SEATED` | 观众入席 | Audience Seated | 能力 | `1` | 普通 | 自身 | `src/cards/AudienceSeated.cs` | 所有敌人获得标记。 |

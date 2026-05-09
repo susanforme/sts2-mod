@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using jhin.CardPools;
 using jhin.Actions;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -16,6 +17,8 @@ public class Reload() : AbstractJhinCard(
     rarity: CardRarity.Basic,
     target: TargetType.Self)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-RELOAD.png".ImagePath();
+
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

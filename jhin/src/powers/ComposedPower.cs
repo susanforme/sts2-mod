@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using jhin.Actions;
+using jhin.Extensions;
 using jhin.Magazine;
 
 namespace jhin.Powers;
@@ -17,6 +18,10 @@ namespace jhin.Powers;
 /// </summary>
 public class ComposedPower : CustomPowerModel
 {
+    public override string CustomPackedIconPath => "JHIN-COMPOSED_POWER.png".PowerImagePath();
+    public override string CustomBigIconPath => "JHIN-COMPOSED_POWER.png".PowerImagePath();
+    public override string CustomBigBetaIconPath => "JHIN-COMPOSED_POWER.png".PowerImagePath();
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 

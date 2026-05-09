@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using jhin.Extensions;
 using jhin.Magazine;
 using jhin.Relics;
 
@@ -14,6 +15,10 @@ namespace jhin.Powers;
 public class BulletPower : CustomPowerModel
 {
     private JhinMagazineState? _subscribedState;
+
+    public override string CustomPackedIconPath => "JHIN-BULLET_POWER.png".PowerImagePath();
+    public override string CustomBigIconPath => "JHIN-BULLET_POWER.png".PowerImagePath();
+    public override string CustomBigBetaIconPath => "JHIN-BULLET_POWER.png".PowerImagePath();
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

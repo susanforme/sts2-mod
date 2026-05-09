@@ -17,13 +17,13 @@ public static class StringExtensions
     public static string BigCardImagePath(this string path)
         => Res(MainFile.ModId, "Images", "Cards", "Big", path);
 
-    // "foo.png".PowerImagePath()    => "res://JhinMod/Images/Powers/foo.png"
+    // "foo.png".PowerImagePath()    => "res://JhinMod/Images/Power/foo.png"
     public static string PowerImagePath(this string path)
-        => Res(MainFile.ModId, "Images", "Powers", path);
+        => Res(MainFile.ModId, "Images", "Power", path);
 
-    // "foo.png".BigPowerImagePath() => "res://JhinMod/Images/Powers/Big/foo.png"
+    // "foo.png".BigPowerImagePath() => "res://JhinMod/Images/Power/Big/foo.png"
     public static string BigPowerImagePath(this string path)
-        => Res(MainFile.ModId, "Images", "Powers", "Big", path);
+        => Res(MainFile.ModId, "Images", "Power", "Big", path);
 
     // "foo.png".RelicImagePath()    => "res://JhinMod/Images/Relics/foo.png"
     public static string RelicImagePath(this string path)

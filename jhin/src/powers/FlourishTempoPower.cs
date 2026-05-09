@@ -8,11 +8,16 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using jhin.Actions;
+using jhin.Extensions;
 
 namespace jhin.Powers;
 
 public class FlourishTempoPower : CustomPowerModel
 {
+    public override string CustomPackedIconPath => "JHIN-FLOURISH_TEMPO_POWER.png".PowerImagePath();
+    public override string CustomBigIconPath => "JHIN-FLOURISH_TEMPO_POWER.png".PowerImagePath();
+    public override string CustomBigBetaIconPath => "JHIN-FLOURISH_TEMPO_POWER.png".PowerImagePath();
+
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
