@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.CardPools;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -17,6 +18,8 @@ public class FinishOff() : AbstractJhinCard(
     rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-FINISH_OFF.png".ImagePath();
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

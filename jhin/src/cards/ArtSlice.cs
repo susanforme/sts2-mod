@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.CardPools;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -25,6 +26,8 @@ public class ArtSlice() : AbstractJhinCard(
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-ART_SLICE.png".ImagePath();
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

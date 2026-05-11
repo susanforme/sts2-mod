@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.Actions;
 using jhin.CardPools;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -22,6 +23,8 @@ public class EncoreBullet() : AbstractShootCard(
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-ENCORE_BULLET.png".ImagePath();
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

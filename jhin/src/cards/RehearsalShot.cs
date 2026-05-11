@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.Actions;
 using jhin.CardPools;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -22,6 +23,8 @@ public class RehearsalShot() : AbstractShootCard(
     rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-REHEARSAL_SHOT.png".ImagePath();
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

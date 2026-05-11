@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using jhin.CardPools;
+using jhin.Extensions;
 
 namespace jhin.Cards;
 
@@ -21,6 +22,8 @@ public class SidestepFire() : AbstractShootCard(
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy)
 {
+    protected override string PortraitResourcePath => "Card/JHIN-SIDESTEP_FIRE.png".ImagePath();
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(6, ValueProp.Move),
