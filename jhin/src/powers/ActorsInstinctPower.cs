@@ -14,7 +14,7 @@ using jhin.Magazine;
 namespace jhin.Powers;
 
 /// <summary>
-/// 演员本能 / Actor's Instinct — If no flourish this turn, next turn +1 Strength. Upgrade: also +1 Dexterity.
+/// 演员本能 / Actor's Instinct — If no flourish this turn, next turn +1 Strength (upgraded: +2).
 /// </summary>
 public class ActorsInstinctPower : CustomPowerModel, IJhinTurnStartPower
 {
@@ -50,11 +50,6 @@ public class ActorsInstinctPower : CustomPowerModel, IJhinTurnStartPower
 
         _shouldGrantBuffNextTurn = false;
         Flash();
-        _ = JhinCombatActionUtil.ApplyOrStackStrength(Owner, 1);
-
-        if (Amount > 1)
-        {
-            _ = JhinCombatActionUtil.ApplyOrStackDexterity(Owner, 1);
-        }
+        _ = JhinCombatActionUtil.ApplyOrStackStrength(Owner, Amount);
     }
 }

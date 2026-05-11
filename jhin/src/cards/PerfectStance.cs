@@ -20,7 +20,7 @@ namespace jhin.Cards;
 public class PerfectStance() : AbstractJhinCard(
     cost: 1,
     type: CardType.Skill,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, ValueProp.Move)];

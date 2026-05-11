@@ -12,7 +12,7 @@ namespace jhin.Cards;
 public class DeathIsArt() : AbstractJhinCard(
     cost: 2,
     type: CardType.Power,
-    rarity: CardRarity.Uncommon,
+    rarity: CardRarity.Common,
     target: TargetType.Self)
 {
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];

@@ -32,7 +32,7 @@
   "JHIN-ACTORS_INSTINCT_POWER.title": "Actor's Instinct",
   "JHIN-ACTORS_INSTINCT_POWER.description": "If you didn't [gold]Flourish[/gold] this turn, gain 1 Strength next turn.",
   "JHIN-ACTORS_INSTINCT_POWER_PLUS.title": "Actor's Instinct",
-  "JHIN-ACTORS_INSTINCT_POWER_PLUS.description": "If you didn't [gold]Flourish[/gold] this turn, gain 1 Strength and 1 Dexterity next turn.",
+  "JHIN-ACTORS_INSTINCT_POWER_PLUS.description": "If you didn't [gold]Flourish[/gold] this turn, gain 2 Strength next turn.",
   "JHIN-STAGE_CONTROL_POWER.title": "Stage Control",
   "JHIN-STAGE_CONTROL_POWER.description": "Whenever you apply [gold]Weak[/gold], also apply {markAmount} [gold]Mark[/gold].",
   "JHIN-DEATH_IS_ART_POWER.title": "Death is Art",

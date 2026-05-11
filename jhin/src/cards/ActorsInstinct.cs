@@ -10,14 +10,14 @@ using jhin.Powers;
 namespace jhin.Cards;
 
 /// <summary>
-/// 演员本能 / Actor's Instinct — 1 cost, common power.
-/// If no flourish this turn, next turn +1 Strength. Upgrade: also +1 Dexterity.
+/// 演员本能 / Actor's Instinct — 1 cost, rare power.
+/// If no flourish this turn, next turn +1 Strength (upgraded: +2).
 /// </summary>
 [Pool(typeof(JhinCardPool))]
 public class ActorsInstinct() : AbstractJhinCard(
     cost: 1,
     type: CardType.Power,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Rare,
     target: TargetType.Self)
 {
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];

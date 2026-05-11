@@ -17,7 +17,7 @@ namespace jhin.Cards;
 public class CountBeats() : AbstractJhinCard(
     cost: 0,
     type: CardType.Skill,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self)
 {
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];

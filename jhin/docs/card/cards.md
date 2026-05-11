@@ -6,18 +6,18 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `JHIN-STRIKE` | 打击 | Strike | 攻击 | `1` | 基础 | 单体敌人 | `src/cards/Strike.cs` | 基础攻击牌，造成单体伤害。 |
 | 1 | `JHIN-DEFEND` | 防御 | Defend | 技能 | `1` | 基础 | 自身 | `src/cards/Defend.cs` | 基础防御牌，获得格挡。 |
-| 1 | `JHIN-COMMON_SHOT` | 普通射击 | Common Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/CommonShot.cs` | 消耗 1 层子弹，造成基础射击伤害。 |
+| 1 | `JHIN-COMMON_SHOT` | 普通射击 | Common Shot | 攻击 / 射击 | `1` | 基础 | 单体敌人 | `src/cards/CommonShot.cs` | 消耗 1 层子弹，造成基础射击伤害。 |
 | 1 | `JHIN-PERFECT_SHOT` | 精准一枪 | Perfect Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/PerfectShot.cs` | 射击造成更高单体伤害；华彩时回能，升级后还会抽牌。 |
 | 1 | `JHIN-WHISPER_BURST` | 低语点射 | Whisper Burst | 攻击 / 射击 | `0` | 普通 | 单体敌人 | `src/cards/WhisperBurst.cs` | 0 费射击牌，消耗 1 层子弹造成伤害。 |
 | 1 | `JHIN-GRACEFUL_FOOTWORK` | 优雅走位 | Graceful Footwork | 技能 | `1` | 普通 | 自身 | `src/cards/GracefulFootwork.cs` | 获得格挡；若本回合已使用过射击牌，再获得额外格挡。 |
-| 1 | `JHIN-AIM_SHOT` | 瞄准射击 | Aim Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/AimShot.cs` | 射击造成伤害，并给予目标标记。 |
+| 1 | `JHIN-AIM_SHOT` | 瞄准射击 | Aim Shot | 攻击 / 射击 | `1` | 罕见 | 单体敌人 | `src/cards/AimShot.cs` | 射击造成伤害，并给予目标标记。 |
 | 1 | `JHIN-PIERCING_ROUND` | 穿透弹 | Piercing Round | 攻击 / 射击 | `1` | 普通 | 全体敌人 | `src/cards/PiercingRound.cs` | 消耗 1 层子弹，对所有敌人造成射击伤害。 |
 |  | `JHIN-DANCING_GRENADE` | 曼舞手雷 | Dancing Grenade | 攻击 | `2` | 稀有 | 随机敌人 | `src/cards/DancingGrenade.cs` | 随机命中 1 名敌人后最多弹跳 4 次；每次弹跳都会提高伤害，击杀时还会让下一跳额外增伤。 |
-|  | `JHIN-FINISH_OFF` | 收尾 | Finish Off | 攻击 | `1` | 普通 | 单体敌人 | `src/cards/FinishOff.cs` | 对半血以下目标造成更高伤害。 |
+|  | `JHIN-FINISH_OFF` | 收尾 | Finish Off | 攻击 | `1` | 罕见 | 单体敌人 | `src/cards/FinishOff.cs` | 对半血以下目标造成更高伤害。 |
 |  | `JHIN-ART_SLICE` | 艺术切割 | Art Slice | 攻击 | `1` | 普通 | 单体敌人 | `src/cards/ArtSlice.cs` | 造成伤害；若目标带有虚弱，追加额外伤害。 |
 |  | `JHIN-SIDESTEP_FIRE` | 侧身开火 | Sidestep Fire | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/SidestepFire.cs` | 射击造成伤害并获得格挡。 |
 |  | `JHIN-QUICK_DRAW` | 快速拔枪 | Quick Draw | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/QuickDraw.cs` | 射击造成伤害并抽 1 张牌。 |
-|  | `JHIN-REHEARSAL_SHOT` | 试演一枪 | Rehearsal Shot | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/RehearsalShot.cs` | 射击造成伤害；若不是华彩则抽 1 张牌。 |
+|  | `JHIN-REHEARSAL_SHOT` | 试演一枪 | Rehearsal Shot | 攻击 / 射击 | `1` | 罕见 | 单体敌人 | `src/cards/RehearsalShot.cs` | 射击造成伤害；若不是最后一发子弹则抽 1 张牌。 |
 |  | `JHIN-GUNFLAME_GRAZE` | 枪焰擦伤 | Gunflame Graze | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/GunflameGraze.cs` | 射击造成伤害并施加虚弱；华彩时施加更多层。 |
 |  | `JHIN-INTERMISSION_KILL` | 幕间点杀 | Intermission Kill | 攻击 | `1` | 普通 | 单体敌人 | `src/cards/IntermissionKill.cs` | 造成伤害；若目标带有标记，获得格挡。 |
 |  | `JHIN-ENCORE_BULLET` | 余兴弹 | Encore Bullet | 攻击 / 射击 | `1` | 普通 | 单体敌人 | `src/cards/EncoreBullet.cs` | 射击造成伤害；若本回合已使用过技能牌，额外造成伤害。 |
@@ -28,18 +28,18 @@
 |  | `JHIN-SET_TRAP` | 设下陷阱 | Set a Trap | 技能 | `1` | 普通 | 单体敌人 | `src/cards/SetTrap.cs` | 获得格挡，并给予目标莲花陷阱。 |
 |  | `JHIN-CALM_RELOAD` | 冷静装填 | Calm Reload | 技能 | `1` | 普通 | 自身 | `src/cards/CalmReload.cs` | 将子弹装填至 4，并获得格挡。 |
 |  | `JHIN-OBSERVE_WEAKNESS` | 观察弱点 | Observe Weakness | 技能 | `1` | 普通 | 单体敌人 | `src/cards/ObserveWeakness.cs` | 给予目标标记；若其生命低于 50%，抽 1 张牌。 |
-|  | `JHIN-PERFECT_STANCE` | 完美姿态 | Perfect Stance | 技能 | `1` | 普通 | 自身 | `src/cards/PerfectStance.cs` | 获得格挡；若子弹为 4，则再获得大量格挡。 |
+|  | `JHIN-PERFECT_STANCE` | 完美姿态 | Perfect Stance | 技能 | `1` | 罕见 | 自身 | `src/cards/PerfectStance.cs` | 获得格挡；若子弹为 4，则再获得大量格挡。 |
 |  | `JHIN-AWAIT_APPLAUSE` | 等待掌声 | Await Applause | 技能 | `1` | 普通 | 自身 | `src/cards/AwaitApplause.cs` | 获得格挡；下回合开始时获得能量。 |
-|  | `JHIN-COUNT_BEATS` | 数拍 | Count Beats | 技能 | `0` | 普通 | 自身 | `src/cards/CountBeats.cs` | 抽牌；若子弹为 1 再抽 1 张；使用后消耗。 |
-| 1 | `JHIN-RELOAD` | 装填 | Reload | 技能 | `0` | 普通 | 自身 | `src/cards/Reload.cs` | 仅将当前子弹直接装填至 4。 |
-|  | `JHIN-COMPOSED` | 从容不迫 | Composed | 能力 | `1` | 普通 | 自身 | `src/cards/Composed.cs` | 本场战斗中首次触发华彩时，抽 2 张牌。 |
-|  | `JHIN-MUZZLE_RHYTHM` | 枪口节奏 | Muzzle Rhythm | 能力 | `1` | 普通 | 自身 | `src/cards/MuzzleRhythm.cs` | 每打出 4 张攻击牌，获得力量；升级后还获得敏捷。 |
+|  | `JHIN-COUNT_BEATS` | 数拍 | Count Beats | 技能 | `0` | 罕见 | 自身 | `src/cards/CountBeats.cs` | 抽牌；若子弹为 1 再抽 1 张；使用后消耗。 |
+| 1 | `JHIN-RELOAD` | 装填 | Reload | 技能 | `0` | 基础 | 自身 | `src/cards/Reload.cs` | 仅将当前子弹直接装填至 4。 |
+|  | `JHIN-COMPOSED` | 从容不迫 | Composed | 能力 | `1` | 罕见 | 自身 | `src/cards/Composed.cs` | 每当你触发华彩时，抽 2 张牌。 |
+|  | `JHIN-MUZZLE_RHYTHM` | 枪口节奏 | Muzzle Rhythm | 能力 | `1` | 罕见 | 自身 | `src/cards/MuzzleRhythm.cs` | 每打出 4 张攻击牌，获得力量；升级后还获得敏捷。 |
 |  | `JHIN-AUDIENCE_SEATED` | 观众入席 | Audience Seated | 能力 | `1` | 普通 | 自身 | `src/cards/AudienceSeated.cs` | 所有敌人获得标记。 |
 |  | `JHIN-SHOW_PLAN` | 演出计划 | Show Plan | 能力 | `1` | 普通 | 自身 | `src/cards/ShowPlan.cs` | 每当装填时，获得格挡。 |
 |  | `JHIN-BLOODY_STAGE` | 血色舞台 | Bloody Stage | 能力 | `1` | 普通 | 自身 | `src/cards/BloodyStage.cs` | 当敌人首次生命降到 50% 以下时，给予标记。 |
 |  | `JHIN-INTERMISSION` | 幕间休息 | Intermission | 能力 | `1` | 普通 | 自身 | `src/cards/Intermission.cs` | 每回合首次使用非射击攻击牌时，额外造成伤害。 |
 |  | `JHIN-GUN_MAINTENANCE` | 枪械保养 | Gun Maintenance | 能力 | `1` | 普通 | 自身 | `src/cards/GunMaintenance.cs` | 每当装填时抽牌；升级后还获得格挡。 |
-|  | `JHIN-ACTORS_INSTINCT` | 演员本能 | Actor's Instinct | 能力 | `1` | 普通 | 自身 | `src/cards/ActorsInstinct.cs` | 若本回合未触发华彩，下回合获得力量；升级后还获得敏捷。 |
+|  | `JHIN-ACTORS_INSTINCT` | 演员本能 | Actor's Instinct | 能力 | `1` | 稀有 | 自身 | `src/cards/ActorsInstinct.cs` | 若本回合未触发华彩，下回合获得 1（升级为 2）点力量。 |
 |  | `JHIN-STAGE_CONTROL` | 控场艺术 | Stage Control | 能力 | `1` | 普通 | 自身 | `src/cards/StageControl.cs` | 每当你给敌人施加虚弱时，同时给予标记。 |
 |  | `JHIN-DEADLY_SHOT` | 弹无虚发 | Deadly Shot | 攻击 / 射击 | `1` | 罕见 | 单体敌人 | `src/cards/DeadlyShot.cs` | 射击造成伤害；若目标没有虚弱，再追加一段伤害。 |
 |  | `JHIN-LOTUS_DETONATION` | 引爆莲花 | Lotus Detonation | 攻击 | `1` | 罕见 | 单体敌人 | `src/cards/LotusDetonation.cs` | 按目标莲花陷阱层数造成伤害，并移除所有莲花陷阱。 |
@@ -65,7 +65,7 @@
 |  | `JHIN-DEATH_NOTICE` | 死亡预告 | Death Notice | 技能 | `1` | 罕见 | 单体敌人 | `src/cards/DeathNotice.cs` | 给予目标标记和易伤；使用后消耗。 |
 |  | `JHIN-SHOW_PAUSE` | 演出暂停 | Show Pause | 技能 | `0` | 罕见 | 自身 | `src/cards/ShowPause.cs` | 对所有敌人施加虚弱；并可触发弱化相关的标记联动；使用后消耗。 |
 |  | `JHIN-POSITION_SWAP` | 换位演出 | Position Swap | 技能 | `0` | 罕见 | 自身 | `src/cards/PositionSwap.cs` | 抽 1 张牌，升级后抽 2 张；并获得 1 点能量；使用后消耗。 |
-|  | `JHIN-DEATH_IS_ART` | 死亡是艺术 | Death is Art | 能力 | `2` | 罕见 | 自身 | `src/cards/DeathIsArt.cs` | 当敌人首次生命降到半血以下时获得力量；升级后层数更高。 |
+|  | `JHIN-DEATH_IS_ART` | 死亡是艺术 | Death is Art | 能力 | `2` | 普通 | 自身 | `src/cards/DeathIsArt.cs` | 当敌人首次生命降到半血以下时获得力量；升级后层数更高。 |
 |  | `JHIN-LOTUS_WORKSHOP` | 莲花工坊 | Lotus Workshop | 能力 | `2` | 罕见 | 自身 | `src/cards/LotusWorkshop.cs` | 每当你施加标记时，同时施加莲花陷阱。 |
 |  | `JHIN-AUDIENCE_CHEER` | 观众喝彩 | Audience Cheer | 能力 | `2` | 罕见 | 自身 | `src/cards/AudienceCheer.cs` | 每次触发华彩时获得敏捷；升级后层数更高。 |
 |  | `JHIN-CAREFUL_ARRANGEMENT` | 精心编排 | Careful Arrangement | 能力 | `1` | 罕见 | 自身 | `src/cards/CarefulArrangement.cs` | 每回合开始时额外抽牌。 |
@@ -91,6 +91,7 @@
 |  | `JHIN-CURTAIN_CALL_PREP` | 谢幕准备 | Curtain Call Prep | 技能 | `1` | 稀有 | 自身 | `src/cards/CurtainCallPrep.cs` | 大量抽牌并获得能量；使用后消耗。 |
 |  | `JHIN-DEADLY_STAGE` | 致命舞台 | Deadly Stage | 技能 | `1` | 稀有 | 自身 | `src/cards/DeadlyStage.cs` | 对所有敌人同时施加标记和莲花陷阱；使用后消耗。 |
 |  | `JHIN-PERFECT_PERFORMANCE` | 完美演出 | Perfect Performance | 技能 | `2` | 稀有 | 自身 | `src/cards/PerfectPerformance.cs` | 装填至 4，获得大量格挡并回能；使用后消耗。 |
+|  | `JHIN-PERFECT_LOADING` | 完美装填 | Perfect Loading | 技能 | `0` | 稀有 | 自身 | `src/cards/PerfectLoading.cs` | 装填至 4，获得能量；升级后还会抽牌；使用后消耗。 |
 |  | `JHIN-WHISPER_ECHO` | 低语回响 | Whisper Echo | 能力 | `2` | 稀有 | 自身 | `src/cards/WhisperEcho.cs` | 每次触发华彩时同时回能并抽牌。 |
 |  | `JHIN-FATEMAKER` | 戏命师 | Fatemaker | 能力 | `2` | 稀有 | 自身 | `src/cards/Fatemaker.cs` | 提高能量上限 1，并在每回合开始时自动射出 1 发子弹随机攻击敌人。 |
 |  | `JHIN-PERFECT_CRIME` | 完美犯罪 | Perfect Crime | 能力 | `2` | 稀有 | 自身 | `src/cards/PerfectCrime.cs` | 立即获得力量，并在之后每回合开始时继续获得力量。 |
@@ -98,7 +99,9 @@
 |  | `JHIN-SOUL_SHOT` | 灵魂射击 | Soul Shot | 攻击 / 射击 | `1` | 远古 | 单体敌人 | `src/cards/SoulShot.cs` | 远古射击牌；按标记提高伤害并重新施加标记，击杀时返还子弹，华彩形态更强。 |
 |  | `JHIN-FINAL_ACT_RELOAD` | 终幕装填 | Final Act Reload | 技能 | `0` | 远古 | 自身 | `src/cards/FinalActReload.cs` | 装填至 4，抽 3 张牌，并让本回合下一张射击必定触发华彩；使用后消耗。 |
 
+## 稀有度
 
+基础 < 普通 < 罕见 < 稀有
 
 ## 备注
 

@@ -14,7 +14,7 @@ namespace jhin.Cards;
 public class FinishOff() : AbstractJhinCard(
     cost: 1,
     type: CardType.Attack,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move)];

@@ -17,7 +17,7 @@ namespace jhin.Cards;
 public class Composed() : AbstractJhinCard(
     cost: 1,
     type: CardType.Power,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self)
 {
     protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars => [];

@@ -18,7 +18,7 @@ namespace jhin.Cards;
 [Pool(typeof(JhinCardPool))]
 public class AimShot() : AbstractShootCard(
     cost: 1,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy)
 {
     protected override string PortraitResourcePath => "Card/JHIN-AIM_SHOT.png".ImagePath();

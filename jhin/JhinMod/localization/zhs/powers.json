@@ -32,7 +32,7 @@
   "JHIN-ACTORS_INSTINCT_POWER.title": "演员本能",
   "JHIN-ACTORS_INSTINCT_POWER.description": "若本回合未触发[gold]华彩[/gold]，下回合获得 1 点力量。",
   "JHIN-ACTORS_INSTINCT_POWER_PLUS.title": "演员本能",
-  "JHIN-ACTORS_INSTINCT_POWER_PLUS.description": "若本回合未触发[gold]华彩[/gold]，下回合获得 1 点力量和 1 点敏捷。",
+  "JHIN-ACTORS_INSTINCT_POWER_PLUS.description": "若本回合未触发[gold]华彩[/gold]，下回合获得 2 点力量。",
   "JHIN-STAGE_CONTROL_POWER.title": "控场艺术",
   "JHIN-STAGE_CONTROL_POWER.description": "每当你给敌人施加[gold]虚弱[/gold]时，同时给予 {markAmount} 层[gold]标记[/gold]。",
   "JHIN-DEATH_IS_ART_POWER.title": "死亡是艺术",
