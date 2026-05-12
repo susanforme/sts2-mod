@@ -33,7 +33,7 @@ public class ShowPlan() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ShowPlanPower? power = await CommonActions.ApplySelf<ShowPlanPower>(choiceContext, this, IsUpgraded ? 2 : 1);
-        power?.SubscribeEvents();
+        SubscribePowerEvents(power);
     }
 
     protected override void OnUpgrade()

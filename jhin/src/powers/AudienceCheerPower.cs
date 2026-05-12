@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,7 +12,7 @@ using jhin.Magazine;
 
 namespace jhin.Powers;
 
-public class AudienceCheerPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class AudienceCheerPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -28,9 +27,14 @@ public class AudienceCheerPower : CustomPowerModel, IAddDumbVariablesToPowerDesc
         HoverTipFactory.FromKeyword(Cards.JhinKeywords.Flourish),
     ];
 
-    public void SubscribeEvents()
+    protected override void SubscribeEventHandlers()
     {
         FlourishEventBus.OnFlourishTriggered += OnFlourishTriggered;
+    }
+
+    protected override void UnsubscribeEventHandlers()
+    {
+        FlourishEventBus.OnFlourishTriggered -= OnFlourishTriggered;
     }
 
     private void OnFlourishTriggered(PlayerChoiceContext choiceContext, Player player, JhinMagazineState state)

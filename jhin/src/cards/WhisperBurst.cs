@@ -29,13 +29,7 @@ public class WhisperBurst() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
-        {
-            return;
-        }
-
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-        EndFlourishContext();
+        await TryPerformBasicShootAttack(choiceContext, cardPlay);
     }
 
     protected override void OnUpgrade()

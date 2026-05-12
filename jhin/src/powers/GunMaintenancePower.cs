@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -19,7 +18,7 @@ namespace jhin.Powers;
 /// 枪械保养 / Gun Maintenance — On play a reload card: draw 1. Upgrade: draw 1 + 2 Block.
 /// Subscription managed externally (subscribed from card OnPlay, unsubscribed at combat end).
 /// </summary>
-public class GunMaintenancePower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class GunMaintenancePower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override string CustomPackedIconPath => "JHIN-GUN_MAINTENANCE_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-GUN_MAINTENANCE_POWER.png".PowerImagePath();
@@ -39,9 +38,14 @@ public class GunMaintenancePower : CustomPowerModel, IAddDumbVariablesToPowerDes
         description.Add("blockAmount", 2);
     }
 
-    public void SubscribeEvents()
+    protected override void SubscribeEventHandlers()
     {
         ReloadEventBus.OnReloadTriggered += OnReloadTriggered;
+    }
+
+    protected override void UnsubscribeEventHandlers()
+    {
+        ReloadEventBus.OnReloadTriggered -= OnReloadTriggered;
     }
 
     private void OnReloadTriggered(PlayerChoiceContext choiceContext, Player player, JhinMagazineState state, int bulletsBeforeReload)

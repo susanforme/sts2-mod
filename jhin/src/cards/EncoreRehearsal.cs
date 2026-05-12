@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -28,15 +29,23 @@ public class EncoreRehearsal() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target))
         {
             return;
         }
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-        EndFlourishContext();
+        bool wasFlourish = IsFlourishShot;
 
-        if (!IsFlourishShot)
+        try
+        {
+            await PerformShootAttack(choiceContext, target);
+        }
+        finally
+        {
+            EndFlourishContext();
+        }
+
+        if (!wasFlourish)
         {
             await JhinCombatActionUtil.Draw(choiceContext, Owner, 1);
             _ = MegaCrit.Sts2.Core.Commands.PlayerCmd.GainEnergy(1m, Owner);

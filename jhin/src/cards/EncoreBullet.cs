@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -34,20 +35,25 @@ public class EncoreBullet() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target))
         {
             return;
         }
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-
-        if (JhinCombatActionUtil.HasPlayedSkillThisTurn(Owner))
+        try
         {
-            int bonusDamage = IsUpgraded ? 6 : 5;
-            await DealRawBonusDamage(choiceContext, cardPlay.Target, bonusDamage);
-        }
+            await PerformShootAttack(choiceContext, target);
 
-        EndFlourishContext();
+            if (JhinCombatActionUtil.HasPlayedSkillThisTurn(Owner))
+            {
+                int bonusDamage = IsUpgraded ? 6 : 5;
+                await DealRawBonusDamage(choiceContext, target, bonusDamage);
+            }
+        }
+        finally
+        {
+            EndFlourishContext();
+        }
     }
 
     protected override void OnUpgrade()

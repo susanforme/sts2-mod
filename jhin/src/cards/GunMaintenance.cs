@@ -33,7 +33,7 @@ public class GunMaintenance() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         GunMaintenancePower? power = await CommonActions.ApplySelf<GunMaintenancePower>(choiceContext, this, IsUpgraded ? 2 : 1);
-        power?.SubscribeEvents();
+        SubscribePowerEvents(power);
     }
 
     protected override void OnUpgrade()

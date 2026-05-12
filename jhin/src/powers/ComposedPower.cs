@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,7 +15,7 @@ namespace jhin.Powers;
 /// 从容不迫 / Composed — First flourish each combat: draw 2.
 /// Subscribes to FlourishEventBus. Subscription managed by MagazineHooks at combat start/end.
 /// </summary>
-public class ComposedPower : CustomPowerModel
+public class ComposedPower : AbstractJhinPower
 {
     public override string CustomPackedIconPath => "JHIN-COMPOSED_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-COMPOSED_POWER.png".PowerImagePath();
@@ -30,9 +29,14 @@ public class ComposedPower : CustomPowerModel
         HoverTipFactory.FromKeyword(Cards.JhinKeywords.Flourish),
     ];
 
-    public void SubscribeEvents()
+    protected override void SubscribeEventHandlers()
     {
         FlourishEventBus.OnFlourishTriggered += OnFlourishTriggered;
+    }
+
+    protected override void UnsubscribeEventHandlers()
+    {
+        FlourishEventBus.OnFlourishTriggered -= OnFlourishTriggered;
     }
 
     private void OnFlourishTriggered(PlayerChoiceContext choiceContext, Player player, JhinMagazineState state)

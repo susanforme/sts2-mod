@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -26,14 +27,19 @@ public class LastAudience() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext)) return;
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target)) return;
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
+        try
+        {
+            await PerformShootAttack(choiceContext, target);
 
-        int gainAmount = IsUpgraded ? 2 : 1;
-        _ = PlayerCmd.GainEnergy(gainAmount, Owner);
-
-        EndFlourishContext();
+            int gainAmount = IsUpgraded ? 2 : 1;
+            _ = PlayerCmd.GainEnergy(gainAmount, Owner);
+        }
+        finally
+        {
+            EndFlourishContext();
+        }
     }
 
     protected override PileType GetResultPileType() => PileType.Exhaust;

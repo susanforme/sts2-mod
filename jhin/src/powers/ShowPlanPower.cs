@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -19,7 +18,7 @@ namespace jhin.Powers;
 /// 演出计划 / Show Plan — On reload: gain 3 Block. Upgrade: 5 Block.
 /// Subscription managed externally (subscribed from card OnPlay, unsubscribed at combat end).
 /// </summary>
-public class ShowPlanPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class ShowPlanPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override string CustomPackedIconPath => "JHIN-SHOW_PLAN_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-SHOW_PLAN_POWER.png".PowerImagePath();
@@ -39,9 +38,14 @@ public class ShowPlanPower : CustomPowerModel, IAddDumbVariablesToPowerDescripti
         description.Add("blockAmount", Amount > 1 ? 5 : 3);
     }
 
-    public void SubscribeEvents()
+    protected override void SubscribeEventHandlers()
     {
         ReloadEventBus.OnReloadTriggered += OnReloadTriggered;
+    }
+
+    protected override void UnsubscribeEventHandlers()
+    {
+        ReloadEventBus.OnReloadTriggered -= OnReloadTriggered;
     }
 
     private void OnReloadTriggered(PlayerChoiceContext choiceContext, Player player, JhinMagazineState state, int bulletsBeforeReload)

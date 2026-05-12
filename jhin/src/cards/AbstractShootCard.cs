@@ -1,5 +1,6 @@
 #nullable enable
 
+using System.Diagnostics.CodeAnalysis;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using BaseLib.Utils;
@@ -55,6 +56,46 @@ public abstract class AbstractShootCard(int cost, CardRarity rarity, TargetType 
         {
             OnFlourish();
             ShootAction.TriggerFlourish(choiceContext, Owner);
+        }
+
+        return true;
+    }
+
+    protected bool TryShootTarget(
+        PlayerChoiceContext choiceContext,
+        CardPlay cardPlay,
+        [NotNullWhen(true)] out Creature? target)
+    {
+        target = null;
+
+        if (!TryShoot(choiceContext))
+        {
+            return false;
+        }
+
+        if (TryGetTarget(cardPlay, out target))
+        {
+            return true;
+        }
+
+        EndFlourishContext();
+        return false;
+    }
+
+    protected async Task<bool> TryPerformBasicShootAttack(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target))
+        {
+            return false;
+        }
+
+        try
+        {
+            await PerformShootAttack(choiceContext, target);
+        }
+        finally
+        {
+            EndFlourishContext();
         }
 
         return true;

@@ -32,7 +32,7 @@ public class Composed() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ComposedPower? power = await CommonActions.ApplySelf<ComposedPower>(choiceContext, this, 1);
-        power?.SubscribeEvents();
+        SubscribePowerEvents(power);
     }
 
     protected override void OnUpgrade()

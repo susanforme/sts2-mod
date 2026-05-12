@@ -28,7 +28,7 @@ public class AudienceCheer() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         AudienceCheerPower? power = await CommonActions.ApplySelf<AudienceCheerPower>(choiceContext, this, IsUpgraded ? 2 : 1);
-        power?.SubscribeEvents();
+        SubscribePowerEvents(power);
     }
 
     protected override void OnUpgrade()

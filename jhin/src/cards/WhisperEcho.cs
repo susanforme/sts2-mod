@@ -28,7 +28,7 @@ public class WhisperEcho() : AbstractJhinCard(
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         WhisperEchoPower? power = await CommonActions.ApplySelf<WhisperEchoPower>(choiceContext, this, IsUpgraded ? 2 : 1);
-        power?.SubscribeEvents();
+        SubscribePowerEvents(power);
     }
 
     protected override void OnUpgrade()

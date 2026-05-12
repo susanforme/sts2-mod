@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -33,14 +34,20 @@ public class AimShot() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target))
         {
             return;
         }
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-        await ApplyMarkAction.Execute(cardPlay.Target, IsUpgraded ? 2 : 1);
-        EndFlourishContext();
+        try
+        {
+            await PerformShootAttack(choiceContext, target);
+            await ApplyMarkAction.Execute(target, IsUpgraded ? 2 : 1);
+        }
+        finally
+        {
+            EndFlourishContext();
+        }
     }
 
     protected override void OnUpgrade()

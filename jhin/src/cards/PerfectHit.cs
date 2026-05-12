@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -28,18 +29,23 @@ public class PerfectHit() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext)) return;
+        if (!TryShootTarget(choiceContext, cardPlay, out Creature? target)) return;
 
-        bool hadMark = cardPlay.Target is not null && ShootAction.GetMarkAmount(cardPlay.Target) > 0;
+        bool hadMark = ShootAction.GetMarkAmount(target) > 0;
 
-        await PerformShootAttack(choiceContext, cardPlay.Target);
-
-        if (cardPlay.Target is not null && cardPlay.Target.IsAlive && hadMark)
+        try
         {
-            await DealRawBonusDamage(choiceContext, cardPlay.Target, IsUpgraded ? 15 : 12);
-        }
+            await PerformShootAttack(choiceContext, target);
 
-        EndFlourishContext();
+            if (target.IsAlive && hadMark)
+            {
+                await DealRawBonusDamage(choiceContext, target, IsUpgraded ? 15 : 12);
+            }
+        }
+        finally
+        {
+            EndFlourishContext();
+        }
     }
 
     protected override void OnUpgrade()

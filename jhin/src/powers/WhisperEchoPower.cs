@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Patches.Localization;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,7 +12,7 @@ using jhin.Magazine;
 
 namespace jhin.Powers;
 
-public class WhisperEchoPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class WhisperEchoPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -29,9 +28,14 @@ public class WhisperEchoPower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         description.Add("drawAmount", Amount > 1 ? 2 : 1);
     }
 
-    public void SubscribeEvents()
+    protected override void SubscribeEventHandlers()
     {
         FlourishEventBus.OnFlourishTriggered += OnFlourishTriggered;
+    }
+
+    protected override void UnsubscribeEventHandlers()
+    {
+        FlourishEventBus.OnFlourishTriggered -= OnFlourishTriggered;
     }
 
     private void OnFlourishTriggered(PlayerChoiceContext choiceContext, Player player, JhinMagazineState state)
