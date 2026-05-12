@@ -1,3 +1,5 @@
+#nullable enable
+
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -39,7 +41,7 @@ public class LastAct() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext)) return;
+        if (!TryShoot(choiceContext) || cardPlay.Target is null) return;
 
         await PerformShootAttack(choiceContext, cardPlay.Target);
 

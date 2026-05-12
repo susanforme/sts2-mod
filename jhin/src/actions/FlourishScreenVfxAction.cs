@@ -23,7 +23,7 @@ public static class FlourishScreenVfxAction
         _ = player;
 
         FlourishScreenVfxNode? activeVfx = _activeVfx;
-        if (JhinVfx.IsAlive(activeVfx))
+        if (activeVfx is not null && JhinVfx.IsAlive(activeVfx))
         {
             activeVfx.QueueFree();
         }

@@ -1,3 +1,5 @@
+#nullable enable
+
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -41,7 +43,7 @@ public class ThirdGunshot() : AbstractShootCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!TryShoot(choiceContext))
+        if (!TryShoot(choiceContext) || cardPlay.Target is null)
         {
             return;
         }

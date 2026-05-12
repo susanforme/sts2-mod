@@ -1,3 +1,5 @@
+#nullable enable
+
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
