@@ -14,7 +14,7 @@ namespace jhin.Powers;
 /// 枪口节奏 / Muzzle Rhythm — Every 4th Attack card played: +1 Strength.
 /// Upgraded: also +1 Dexterity.
 /// </summary>
-public class MuzzleRhythmPower : CustomPowerModel
+public class MuzzleRhythmPower : AbstractJhinPower
 {
     public override string CustomPackedIconPath => "JHIN-MUZZLE_RHYTHM_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-MUZZLE_RHYTHM_POWER.png".PowerImagePath();

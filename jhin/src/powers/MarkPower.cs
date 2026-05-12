@@ -8,7 +8,7 @@ using jhin.Utils;
 
 namespace jhin.Powers;
 
-public class MarkPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class MarkPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override string CustomPackedIconPath => "JHIN-MARK_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-MARK_POWER.png".PowerImagePath();

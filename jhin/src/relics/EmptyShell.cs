@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -16,7 +15,7 @@ using jhin.Magazine;
 namespace jhin.Relics;
 
 [Pool(typeof(RelicPools.JhinRelicPool))]
-public class EmptyShell : CustomRelicModel
+public class EmptyShell : AbstractJhinRelic
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 

@@ -16,7 +16,7 @@ namespace jhin.Powers;
 /// 幕间休息 / Intermission — First non-shoot attack each turn: +3 dmg. Upgrade: +5 dmg.
 /// Implemented as a temporary Strength buff that is consumed after the first non-shoot attack.
 /// </summary>
-public class IntermissionPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class IntermissionPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override string CustomPackedIconPath => "JHIN-INTERMISSION_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-INTERMISSION_POWER.png".PowerImagePath();

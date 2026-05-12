@@ -12,7 +12,7 @@ using jhin.Actions;
 
 namespace jhin.Powers;
 
-public class FatemakerPower : CustomPowerModel, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
+public class FatemakerPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

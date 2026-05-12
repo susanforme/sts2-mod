@@ -13,7 +13,7 @@ namespace jhin.Powers;
 /// <summary>
 /// 控场艺术 / Stage Control — When applying Weak to an enemy, also apply 1 Mark. Upgrade: 2 Mark.
 /// </summary>
-public class StageControlPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class StageControlPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

@@ -11,7 +11,7 @@ using jhin.Actions;
 
 namespace jhin.Powers;
 
-public class PerfectCrimePower : CustomPowerModel, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
+public class PerfectCrimePower : AbstractJhinPower, IAddDumbVariablesToPowerDescription, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

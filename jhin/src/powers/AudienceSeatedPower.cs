@@ -13,7 +13,7 @@ namespace jhin.Powers;
 /// The mark is applied from the card's OnPlay directly.
 /// This power just serves as a visual indicator.
 /// </summary>
-public class AudienceSeatedPower : CustomPowerModel
+public class AudienceSeatedPower : AbstractJhinPower
 {
     public override string CustomPackedIconPath => "JHIN-AUDIENCE_SEATED_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-AUDIENCE_SEATED_POWER.png".PowerImagePath();

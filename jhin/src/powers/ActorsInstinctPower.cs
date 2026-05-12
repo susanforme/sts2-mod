@@ -16,7 +16,7 @@ namespace jhin.Powers;
 /// <summary>
 /// 演员本能 / Actor's Instinct — If no flourish this turn, next turn +1 Strength (upgraded: +2).
 /// </summary>
-public class ActorsInstinctPower : CustomPowerModel, IJhinTurnStartPower
+public class ActorsInstinctPower : AbstractJhinPower, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

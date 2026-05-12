@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace jhin.Powers;
 
-public class DeathIsArtPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class DeathIsArtPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

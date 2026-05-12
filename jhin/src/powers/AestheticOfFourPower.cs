@@ -10,7 +10,7 @@ using jhin.Magazine;
 
 namespace jhin.Powers;
 
-public class AestheticOfFourPower : CustomPowerModel, IJhinTurnStartPower
+public class AestheticOfFourPower : AbstractJhinPower, IJhinTurnStartPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;

@@ -11,7 +11,7 @@ using jhin.Extensions;
 
 namespace jhin.Powers;
 
-public class ForcedFlourishPower : CustomPowerModel
+public class ForcedFlourishPower : AbstractJhinPower
 {
     public override string CustomPackedIconPath => "JHIN-FORCED_FLOURISH_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-FORCED_FLOURISH_POWER.png".PowerImagePath();

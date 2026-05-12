@@ -12,7 +12,7 @@ using jhin.Extensions;
 
 namespace jhin.Powers;
 
-public class FlourishTempoPower : CustomPowerModel
+public class FlourishTempoPower : AbstractJhinPower
 {
     public override string CustomPackedIconPath => "JHIN-FLOURISH_TEMPO_POWER.png".PowerImagePath();
     public override string CustomBigIconPath => "JHIN-FLOURISH_TEMPO_POWER.png".PowerImagePath();

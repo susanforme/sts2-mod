@@ -12,7 +12,7 @@ using jhin.Relics;
 
 namespace jhin.Powers;
 
-public class BulletPower : CustomPowerModel
+public class BulletPower : AbstractJhinPower
 {
     private JhinMagazineState? _subscribedState;
 

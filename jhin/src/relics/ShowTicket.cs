@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -13,7 +12,7 @@ using jhin.Powers;
 namespace jhin.Relics;
 
 [Pool(typeof(RelicPools.JhinRelicPool))]
-public class ShowTicket : CustomRelicModel
+public class ShowTicket : AbstractJhinRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 

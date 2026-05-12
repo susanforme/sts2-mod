@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 namespace jhin.Relics;
 
 [Pool(typeof(SharedRelicPool))]
-public class LastWhisper : CustomRelicModel
+public class LastWhisper : AbstractJhinRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 

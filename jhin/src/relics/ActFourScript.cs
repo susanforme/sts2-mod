@@ -1,6 +1,5 @@
 #nullable enable
 
-using BaseLib.Abstracts;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 namespace jhin.Relics;
 
 [Pool(typeof(RelicPools.JhinRelicPool))]
-public class ActFourScript : CustomRelicModel
+public class ActFourScript : AbstractJhinRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 

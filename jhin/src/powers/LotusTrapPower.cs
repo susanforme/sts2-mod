@@ -16,7 +16,7 @@ using jhin.Utils;
 
 namespace jhin.Powers;
 
-public class LotusTrapPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class LotusTrapPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     private static readonly Dictionary<Creature, int> PendingWeakByCreature = [];
 

@@ -13,7 +13,7 @@ using jhin.Magazine;
 
 namespace jhin.Powers;
 
-public class MasterpieceBornPower : CustomPowerModel, IAddDumbVariablesToPowerDescription
+public class MasterpieceBornPower : AbstractJhinPower, IAddDumbVariablesToPowerDescription
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
