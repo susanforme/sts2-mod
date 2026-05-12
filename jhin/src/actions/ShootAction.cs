@@ -95,6 +95,7 @@ public static class ShootAction
         }
 
         FlourishContext.Begin();
+        FlourishScreenVfxAction.Play(choiceContext, player);
         FlourishEventBus.Notify(choiceContext, player, state);
     }
 }
