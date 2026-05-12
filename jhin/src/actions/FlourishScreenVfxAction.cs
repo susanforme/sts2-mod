@@ -13,8 +13,6 @@ namespace jhin.Actions;
 /// </summary>
 public static class FlourishScreenVfxAction
 {
-    private const string FlourishAudioPath = "res://JhinMod/Assets/placeholder.mp3";
-
     private static FlourishScreenVfxNode? _activeVfx;
 
     public static void Play(PlayerChoiceContext choiceContext, Player player)
@@ -39,7 +37,7 @@ public static class FlourishScreenVfxAction
             return;
         }
 
-        JhinVfx.PlayOneShotAudio(FlourishAudioPath, volumeDb: -4.0f);
+        JhinVfx.PlayOneShotAudio(JhinAssets.Audio.Placeholder, volumeDb: -4.0f);
         MainFile.Logger.Info("Flourish: full-screen VFX triggered.");
     }
 }
